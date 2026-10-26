@@ -1,0 +1,39 @@
+server {
+    listen       ${PORT};
+    server_name  _;
+    root         /usr/share/nginx/html;
+    index        index.html;
+    charset      utf-8;
+
+    # compression
+    gzip              on;
+    gzip_comp_level   6;
+    gzip_min_length   256;
+    gzip_vary         on;
+    gzip_types        text/css application/javascript text/javascript image/svg+xml
+                      application/json application/manifest+json application/xml text/plain;
+
+    # security headers
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-Frame-Options        "SAMEORIGIN" always;
+    add_header Referrer-Policy        "strict-origin-when-cross-origin" always;
+
+    # correct content types
+    location = /site.webmanifest { default_type application/manifest+json; }
+    location = /sitemap.xml      { default_type application/xml; }
+    location = /robots.txt       { default_type text/plain; }
+
+    # cache fingerprint-free static assets for a week
+    location ~* \.(?:css|js|png|jpe?g|gif|svg|ico|webmanifest|webp)$ {
+        expires 7d;
+        add_header Cache-Control "public, max-age=604800";
+    }
+
+    # on-brand 404 page (keeps a 404 status)
+    error_page 404 /404.html;
+
+    # 无扩展名的干净 URL：/services -> /services.html
+    location / {
+        try_files $uri $uri.html $uri/ =404;
+    }
+}
