@@ -26,7 +26,11 @@ server {
     # cache fingerprint-free static assets for a week
     location ~* \.(?:css|js|png|jpe?g|gif|svg|ico|webmanifest|webp)$ {
         expires 7d;
-        add_header Cache-Control "public, max-age=604800";
+        # add_header 在 location 内会覆盖 server 级的同名指令，安全头需在此重复
+        add_header Cache-Control          "public, max-age=604800";
+        add_header X-Content-Type-Options "nosniff" always;
+        add_header X-Frame-Options        "SAMEORIGIN" always;
+        add_header Referrer-Policy        "strict-origin-when-cross-origin" always;
     }
 
     # on-brand 404 page (keeps a 404 status)
