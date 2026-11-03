@@ -9,12 +9,15 @@
 同一份几何也用来画分享卡 public/og.png。
 
 运行（仓库根目录）：python3 tools/figures.py
+  --og     同时重绘分享卡 public/og.png
+  --icons  同时重绘朱砂印图标 apple-touch-icon.png（180）与 icon-512.png
 随机种子固定为 1904，结果可复现。
 """
 import math, os, random, re, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 INDEX = os.path.join(ROOT, "public", "index.html")
+CJK_FONT = "/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc"
 
 def f(v):
     s = f"{v:.1f}"
@@ -262,7 +265,7 @@ def og_png(out):
     draw(G["spine"], 170, S + 1); draw(G["core"], 220, S, fill=True)
     draw(G["node"], 220, S, fill=True); draw(G["pulse"], 245, S, fill=True)
 
-    CJK = "/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc"
+    CJK = CJK_FONT
     LAT = "/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf"
     if not os.path.exists(LAT): LAT = CJK
     F = lambda p, s: ImageFont.truetype(p, s * S)
@@ -278,6 +281,26 @@ def og_png(out):
     img = img.resize((1200, 630), Image.LANCZOS)
     # 256 色抖动量化：渐变不出色带，体积约为真彩的一半
     img.quantize(256, dither=Image.Dither.FLOYDSTEINBERG).save(out, "PNG", optimize=True)
+    print("wrote", out, os.path.getsize(out) // 1024, "KB")
+
+# ===================================================================== icons
+def icon_png(out, size):
+    """朱砂印「陈」，与 favicon.svg 同一构图；铺满方形，圆角交给 iOS / 安卓去裁。"""
+    from PIL import Image, ImageDraw, ImageFont
+    S = 4
+    W = size * S
+    cinnabar, cream = (0xB5, 0x43, 0x2B), (0xFB, 0xF3, 0xE2)
+    img = Image.new("RGB", (W, W), cinnabar)
+    d = ImageDraw.Draw(img)
+    k = W / 58                                  # favicon 外框宽 58，按比例放大
+    line = tuple(round(cinnabar[i] + (cream[i] - cinnabar[i]) * .7) for i in range(3))
+    inset = 4.5 * k
+    d.rounded_rectangle([inset, inset, W - inset, W - inset], radius=2 * k, outline=line, width=max(1, round(1.5 * k)))
+    font = ImageFont.truetype(CJK_FONT, round(34 * k))
+    x0, y0, x1, y1 = d.textbbox((0, 0), "陈", font=font)
+    d.text(((W - (x1 - x0)) / 2 - x0, (W - (y1 - y0)) / 2 - y0), "陈", font=font, fill=cream,
+           stroke_width=round(.9 * k), stroke_fill=cream)   # 文泉驿没有粗体，用描边加重
+    img.resize((size, size), Image.LANCZOS).save(out, "PNG", optimize=True)
     print("wrote", out, os.path.getsize(out) // 1024, "KB")
 
 # ===================================================================== inject
@@ -299,3 +322,6 @@ if __name__ == "__main__":
     print(f"specimen {len(sp)//1024} KB · helix {len(hx)//1024} KB · band {len(band)//1024} KB → injected into public/index.html")
     if "--og" in sys.argv:
         og_png(os.path.join(ROOT, "public", "og.png"))
+    if "--icons" in sys.argv:
+        icon_png(os.path.join(ROOT, "public", "apple-touch-icon.png"), 180)
+        icon_png(os.path.join(ROOT, "public", "icon-512.png"), 512)

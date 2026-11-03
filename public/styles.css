@@ -63,6 +63,7 @@ a:hover { color: var(--ink); }
 ::selection { background: #E2C98F; color: var(--ink); }
 b, strong { color: var(--ink); font-weight: 600; }
 .skip { position: absolute; left: -9999px; top: 0; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .skip:focus { left: 1rem; top: 1rem; z-index: 99; background: var(--card); padding: .4rem .8rem; }
 
 /* ------------------------------------------------------------------ 印章 */
@@ -169,11 +170,12 @@ b, strong { color: var(--ink); font-weight: 600; }
   border: 1px solid rgba(251, 243, 226, .45); background: rgba(38, 22, 4, .2);
 }
 .label__head {
-  display: flex; justify-content: space-between; gap: 1rem;
+  display: flex; justify-content: space-between; gap: 1rem; margin: 0;
   font-family: var(--serif-en); font-size: .68rem; letter-spacing: .16em; text-transform: uppercase;
   padding-bottom: .5rem; margin-bottom: .5rem; border-bottom: 1px solid rgba(251, 243, 226, .32);
 }
-.label > div:not(.label__head) { display: grid; grid-template-columns: 3.3rem 1fr; gap: .6rem; padding: .16rem 0; }
+.label dl { margin: 0; }
+.label dl > div { display: grid; grid-template-columns: 3.3rem 1fr; gap: .6rem; padding: .16rem 0; }
 .label dt { opacity: .72; }
 .label dd { margin: 0; }
 .label .label__key dd { font-weight: 600; }
@@ -243,6 +245,23 @@ b, strong { color: var(--ink); font-weight: 600; }
 .facts .facts__key { background: rgba(62, 107, 92, .07); box-shadow: inset 0 2px 0 var(--green); }
 .facts .facts__key dd b { color: var(--green); }
 
+.actions { display: flex; flex-wrap: wrap; gap: .7rem .8rem; margin: 1.6rem 0 2.6rem !important; }
+.btn {
+  display: inline-flex; align-items: baseline; gap: .55rem; padding: .55rem 1.1rem; font: inherit; font-size: .92rem;
+  line-height: 1.4; color: var(--ochre-text); text-decoration: none; cursor: pointer;
+  background: var(--card); border: 1px solid var(--ochre); border-radius: 3px;
+  transition: background-color .25s, color .25s;
+}
+.btn span { font-size: .78rem; color: var(--muted); }
+.btn:hover { color: var(--ink); background: #F1E4C6; }
+.btn--primary { font-weight: 600; color: var(--cream); background: #6E470F; border-color: #6E470F; }
+.btn--primary span { color: rgba(251, 243, 226, .86); }
+.btn--primary:hover { color: var(--cream); background: #553609; }
+.copy {
+  margin-left: .7rem; padding: 0 .55rem; font: inherit; font-size: .76rem; line-height: 1.7; cursor: pointer;
+  color: var(--ochre-text); background: none; border: 1px solid var(--rule); border-radius: 99px;
+}
+.copy:hover { border-color: var(--ochre); }
 .skills { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem .55rem; }
 .skills li { padding: .1rem .75rem; font-size: .86rem; color: var(--ink-2); border: 1px solid var(--rule); border-radius: 99px; background: rgba(250, 245, 234, .6); }
 .skills .is-key { font-weight: 600; color: var(--ochre-text); border-color: var(--ochre); background: rgba(156, 106, 30, .08); }
@@ -253,6 +272,11 @@ b, strong { color: var(--ink); font-weight: 600; }
 .film figcaption { margin-top: .6rem; font-size: .84rem; color: var(--muted); }
 .film figcaption b { font-family: var(--serif-en); font-style: italic; color: var(--ink-2); }
 .film figcaption span { display: block; font-family: var(--serif-en); font-style: italic; }
+.film__text { margin-top: .9rem; font-size: .86rem; color: var(--ink-2); }
+.film__text summary { width: max-content; cursor: pointer; color: var(--ochre-text); }
+.film__text ol { list-style: none; margin: .8rem 0 0; padding: .2rem 0 0 1rem; border-left: 1px solid var(--rule); }
+.film__text li { margin: 0 0 .45rem; line-height: 1.75; }
+.film__text li b { margin-right: .6rem; font-weight: 600; color: var(--ink); }
 
 /* ------------------------------------------------------------------ V 方向 · 双链 */
 .helix { display: grid; grid-template-columns: minmax(0, 1fr) minmax(170px, 240px) minmax(0, 1fr); gap: clamp(1rem, 3vw, 2.8rem); align-items: center; }
@@ -565,7 +589,7 @@ b, strong { color: var(--ink); font-weight: 600; }
   .ch { padding-top: 2.4rem; }
   .ch__margin { position: static; }
   .plate, .card, .archive, .ev { break-inside: avoid; }
-  .film { display: none; }
+  .film, .actions, .copy { display: none; }
   .js .rv { opacity: 1; transform: none; }
 }
 

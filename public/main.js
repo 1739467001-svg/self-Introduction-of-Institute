@@ -1,7 +1,7 @@
 /* 作品博物志 · 渐进增强
    没有这份脚本，页面也完整可读；它只负责：顶栏状态与阅读进度、
-   段落揭示、当前章节高亮、Fig.1 的指针视差、封面离屏时暂停动画，
-   以及影像滑出视口时暂停播放。 */
+   段落揭示、当前章节高亮、Fig.1 的指针视差、封面离屏时暂停动画、
+   影像滑出视口时暂停播放，以及「复制微信号」按钮。 */
 (function () {
   "use strict";
   window.__cjy = true;
@@ -30,6 +30,38 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", onScroll);
   onScroll();
+
+  /* ---------------------------------------------------- 复制微信号（没有 JS 时按钮保持隐藏） */
+  function copyText(text, done) {
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(legacyCopy(text)); });
+    } else {
+      done(legacyCopy(text));   // 以 IP 访问时不是安全上下文，剪贴板接口不可用
+    }
+  }
+  function legacyCopy(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.cssText = "position:fixed;top:0;left:0;opacity:0";
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    return ok;
+  }
+  document.querySelectorAll("[data-copy]").forEach(function (btn) {
+    var label = btn.textContent, timer = 0;
+    btn.hidden = false;
+    btn.addEventListener("click", function () {
+      copyText(btn.getAttribute("data-copy"), function (ok) {
+        btn.textContent = ok ? "已复制" : "请长按复制";
+        clearTimeout(timer);
+        timer = setTimeout(function () { btn.textContent = label; }, 1800);
+      });
+    });
+  });
 
   /* ---------------------------------------------------- 揭示 */
   var items = document.querySelectorAll(".rv");

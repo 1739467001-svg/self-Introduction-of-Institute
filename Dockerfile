@@ -12,4 +12,12 @@ ENV NGINX_ENVSUBST_FILTER=PORT
 COPY default.conf.template /etc/nginx/templates/default.conf.template
 COPY public/ /usr/share/nginx/html/
 
+# Rewrite ?v= on styles.css / main.js to a content hash, so a CSS or JS change
+# reaches visitors even if the version in index.html was not bumped by hand.
+RUN cd /usr/share/nginx/html \
+ && css=$(md5sum styles.css | cut -c1-8) \
+ && js=$(md5sum main.js | cut -c1-8) \
+ && sed -i -e "s/styles\.css?v=[0-9A-Za-z]*/styles.css?v=$css/g" \
+           -e "s/main\.js?v=[0-9A-Za-z]*/main.js?v=$js/g" index.html 404.html
+
 EXPOSE 8080

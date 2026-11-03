@@ -1,3 +1,16 @@
+# 页面里的绝对地址（og:image、og:url、canonical、sitemap）写成占位符 __ORIGIN__，
+# 由 nginx 按访客实际使用的协议和域名填写：换域名、换平台都不用改文件。
+# 平台在前面终结 HTTPS 时（如 Zeabur），协议以 X-Forwarded-Proto 为准。
+map $http_x_forwarded_proto $site_proto {
+    default $http_x_forwarded_proto;
+    ""      $scheme;
+}
+# 用请求头里的 Host（带非标准端口，如 IP:8080）；没有时退回 $host
+map $http_host $site_host {
+    default $http_host;
+    ""      $host;
+}
+
 server {
     listen       ${PORT};
     server_name  _;
@@ -11,33 +24,36 @@ server {
     gzip_min_length   256;
     gzip_vary         on;
     gzip_types        text/css application/javascript text/javascript image/svg+xml
-                      application/json application/manifest+json application/xml text/plain;
+                      application/json application/manifest+json application/xml text/xml text/plain;
 
-    # security headers
+    # security headers（下面的 location 不写 add_header，才能继承这三条）
     add_header X-Content-Type-Options "nosniff" always;
     add_header X-Frame-Options        "SAMEORIGIN" always;
     add_header Referrer-Policy        "strict-origin-when-cross-origin" always;
+
+    # __ORIGIN__ → 协议://域名（text/html 默认处理；robots.txt 与 sitemap.xml 也要）
+    sub_filter               '__ORIGIN__' '$site_proto://$site_host';
+    sub_filter_once          off;
+    sub_filter_types         text/plain text/xml application/xml;
+    sub_filter_last_modified on;
 
     # correct content types
     location = /site.webmanifest { default_type application/manifest+json; }
     location = /sitemap.xml      { default_type application/xml; }
     location = /robots.txt       { default_type text/plain; }
 
-    # cache fingerprint-free static assets for a week
-    location ~* \.(?:css|js|png|jpe?g|gif|svg|ico|webmanifest|webp|mp4)$ {
+    # 静态资源缓存一周；expires 已经写出 Cache-Control，不要再 add_header 一份
+    location ~* \.(?:css|js|png|jpe?g|gif|svg|ico|webmanifest|webp|mp4|pdf)$ {
         expires 7d;
-        # add_header 在 location 内会覆盖 server 级的同名指令，安全头需在此重复
-        add_header Cache-Control          "public, max-age=604800";
-        add_header X-Content-Type-Options "nosniff" always;
-        add_header X-Frame-Options        "SAMEORIGIN" always;
-        add_header Referrer-Policy        "strict-origin-when-cross-origin" always;
     }
 
     # on-brand 404 page (keeps a 404 status)
     error_page 404 /404.html;
 
+    # 页面本身每次向服务器确认（no-cache + Last-Modified），新版本上线立即可见
     # 无扩展名的干净 URL：/services -> /services.html
     location / {
+        expires epoch;
         try_files $uri $uri.html $uri/ =404;
     }
 }

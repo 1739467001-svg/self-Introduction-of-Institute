@@ -1,0 +1,45 @@
+# 每次推送与 PR 都验收一遍：
+#   1. Fig.1 / Fig.2 与 tools/figures.py 的输出一致（防止手改 SVG）
+#   2. tools/check.cjs：五种宽度、无 JS、减少动态效果、无障碍、数字核对
+# 各章节截图作为附件上传，可在 Actions 页面下载过目。
+name: check
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  site:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Figures match tools/figures.py
+        run: |
+          python3 tools/figures.py
+          git diff --exit-code -- public/index.html
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Playwright and axe-core
+        run: |
+          npm install --no-save --no-package-lock playwright@1.63.0 axe-core@4.14.0
+          npx playwright install --with-deps chromium
+
+      - name: Five widths, no-JS, reduced motion, accessibility
+        run: node tools/check.cjs --shots shots
+
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: shots/
+          retention-days: 7

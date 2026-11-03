@@ -1,0 +1,15 @@
+{
+  "name": "陈俊烨 Chen Junye · 作品博物志",
+  "short_name": "陈俊烨",
+  "description": "AI 应用开发者：从一段能跑的代码，到一个真实在用的系统。",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "display": "browser",
+  "background_color": "#F3ECDD",
+  "theme_color": "#5A3A0E",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
