@@ -24,7 +24,7 @@ server {
     location = /robots.txt       { default_type text/plain; }
 
     # cache fingerprint-free static assets for a week
-    location ~* \.(?:css|js|png|jpe?g|gif|svg|ico|webmanifest|webp)$ {
+    location ~* \.(?:css|js|png|jpe?g|gif|svg|ico|webmanifest|webp|mp4)$ {
         expires 7d;
         # add_header 在 location 内会覆盖 server 级的同名指令，安全头需在此重复
         add_header Cache-Control          "public, max-age=604800";

@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>陈俊烨 Chen Junye · 作品博物志 · AI for Life Science × Humanities</title>
-  <meta name="description" content="陈俊烨（Chen Junye），浙江工商大学信电人工智能学院硕士研究生，现于杭州医学研究所从事智能体方向研究。以智能体为方法，走向生命科学与人文艺术。收录 12 个已部署上线的系统。" />
+  <title>陈俊烨 Chen Junye · 作品博物志 · AI 应用开发者</title>
+  <meta name="description" content="陈俊烨（CJY），浙江工商大学信电人工智能学院硕士研究生，AI 应用开发者。13 件可在线访问的作品：临床病历智能体、多智能体数字孪生、校内系统；29 场 AI 赛事与活动，8 次获奖。现有整段空档，每周可投入 5–7 天。" />
   <meta name="author" content="陈俊烨 Chen Junye" />
   <meta name="theme-color" content="#5A3A0E" />
 
   <meta property="og:type" content="profile" />
   <meta property="og:locale" content="zh_CN" />
   <meta property="og:title" content="陈俊烨 Chen Junye · 作品博物志" />
-  <meta property="og:description" content="以智能体为方法，走向生命科学与人文艺术。" />
+  <meta property="og:description" content="AI 应用开发者：从一段能跑的代码，到一个真实在用的系统。现有整段空档，每周可投入 5–7 天。" />
   <meta property="og:image" content="og.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -24,14 +24,12 @@
     "@type": "Person",
     "name": "陈俊烨",
     "alternateName": ["Chen Junye", "CJY"],
+    "jobTitle": "AI 应用开发者",
     "email": "mailto:chenjunyepro@gmail.com",
     "address": { "@type": "PostalAddress", "addressLocality": "Hangzhou", "addressCountry": "CN" },
-    "affiliation": [
-      { "@type": "ResearchOrganization", "name": "杭州医学研究所" },
-      { "@type": "CollegeOrUniversity", "name": "浙江工商大学 信电人工智能学院" }
-    ],
-    "knowsAbout": ["AI for Life Science", "LLM Agents", "Multi-Agent Systems", "Digital Twins",
-                   "Retrieval-Augmented Generation", "Digital Humanities"]
+    "affiliation": { "@type": "CollegeOrUniversity", "name": "浙江工商大学 信电人工智能学院" },
+    "knowsAbout": ["AI Application Development", "Vibe Coding", "LLM Agents", "Multi-Agent Systems",
+                   "Clinical AI", "Digital Twins", "Retrieval-Augmented Generation", "AI Education"]
   }
   </script>
 
@@ -40,10 +38,10 @@
     /* main.js 若未能加载，撤掉 js 状态，让所有内容直接可见 */
     window.addEventListener("load", function () { if (!window.__cjy) document.documentElement.classList.remove("js"); });
   </script>
-  <link rel="stylesheet" href="styles.css?v=2610" />
+  <link rel="stylesheet" href="styles.css?v=2611" />
 </head>
 <body>
-  <a class="skip" href="#preface">跳到正文</a>
+  <a class="skip" href="#summary">跳到正文</a>
 
   <!-- ================================================= 顶栏 -->
   <header class="bar" id="bar">
@@ -52,11 +50,11 @@
       <span class="bar__name">陈俊烨<i>Chen Junye</i></span>
     </a>
     <nav class="bar__nav" aria-label="章节">
-      <a href="#preface"><b>I</b>序</a>
-      <a href="#directions"><b>II</b>方向</a>
-      <a href="#specimens"><b>III</b>标本</a>
-      <a href="#curriculum"><b>IV</b>履历</a>
-      <a href="#records"><b>V</b>记录</a>
+      <a href="#summary"><b>I</b>总述</a>
+      <a href="#specimens"><b>II</b>标本</a>
+      <a href="#curriculum"><b>III</b>履历</a>
+      <a href="#records"><b>IV</b>记录</a>
+      <a href="#directions"><b>V</b>方向</a>
       <a href="#correspondence"><b>VI</b>通信</a>
     </nav>
     <span class="bar__progress" aria-hidden="true"></span>
@@ -78,268 +76,318 @@
       </figure>
 
       <div class="cover__side">
-        <p class="cover__claim">以智能体为方法，<br />走向生命科学<br />与人文艺术。</p>
-        <p class="cover__claim-en">Agents as method — toward the life sciences and the humanities.</p>
+        <p class="cover__claim">从一段能跑的代码，<br />到一个真实在用的系统。</p>
+        <p class="cover__claim-en">An AI application developer — from code that runs to a system people use.</p>
         <dl class="label">
           <div class="label__head"><span>Specimen&nbsp;No.&nbsp;2026</span><span>标本签</span></div>
-          <div><dt>名</dt><dd>陈俊烨 · Chen Junye</dd></div>
-          <div><dt>所在</dt><dd>杭州医学研究所 · 智能体方向</dd></div>
+          <div><dt>名</dt><dd>陈俊烨 · CJY</dd></div>
+          <div><dt>身份</dt><dd>AI 应用开发者</dd></div>
           <div><dt>就读</dt><dd>浙江工商大学 · 硕士研究生</dd></div>
-          <div><dt>分类</dt><dd>AI for Life Science × Humanities &amp; Arts</dd></div>
+          <div><dt>合作</dt><dd>中科院杭州医学所 · 未来导师</dd></div>
+          <div class="label__key"><dt>档期</dt><dd>空档期 · 每周可投入 5–7 天</dd></div>
           <div><dt>采集地</dt><dd>杭州 · Hangzhou, CN</dd></div>
         </dl>
       </div>
     </div>
 
-    <a class="cover__cue" href="#preface">翻阅<span aria-hidden="true">↓</span></a>
+    <a class="cover__cue" href="#summary">翻阅<span aria-hidden="true">↓</span></a>
   </section>
 
   <main>
-    <!-- ================================================= I 序 -->
-    <section class="ch" id="preface">
+    <!-- ================================================= I 总述 -->
+    <section class="ch" id="summary">
       <header class="ch__margin">
         <span class="ch__no">I</span>
-        <h2 class="ch__title">序<span>Preface</span></h2>
-      </header>
-      <div class="ch__body">
-        <p class="dropcap rv">我是陈俊烨，浙江工商大学信电人工智能学院硕士研究生，本科读的是软件工程，现于杭州医学研究所从事智能体方向的研究。</p>
-        <p class="rv">此前，我把智能体、数字孪生与生成式 AI 部署进校园、港口、机场与海上油田，又做出了第一件医学智能体；<a href="#specimens">十二个系统</a>至今仍在线运行。接下来，我想把这些方法带向两处：一处是<em class="t-life">生命科学</em>，让智能体从病历书写走进科研流程本身；一处是<em class="t-arts">人文与艺术</em>，用 AI 重新进入记忆、空间与叙事。</p>
-        <p class="aside rv">这本博物志的颜色取自中国传统矿物颜料：<i class="sw sw--ochre"></i>赭石、<i class="sw sw--green"></i>石绿、<i class="sw sw--red"></i>朱砂。</p>
-      </div>
-    </section>
-
-    <!-- ================================================= II 方向 -->
-    <section class="ch" id="directions">
-      <header class="ch__margin">
-        <span class="ch__no">II</span>
-        <h2 class="ch__title">方向<span>Directions</span></h2>
+        <h2 class="ch__title">总述<span>Summary</span></h2>
       </header>
       <div class="ch__body ch__body--wide">
-        <p class="lede rv">两条链，由同一组方法相连。</p>
-
-        <div class="helix">
-          <div class="strand strand--life rv">
-            <h3><i class="sw sw--green"></i>生命科学<span>Life Science</span></h3>
-            <p class="strand__status">正在展开</p>
-            <ol>
-              <li><b>面向临床与生物医学研究的智能体</b><span>Agents for clinical &amp; biomedical research</span><small><a href="#no-01">No.01</a> 病历智能体 · 研究工作现于杭州医学研究所展开</small></li>
-              <li><b>科研流程中的多智能体协作</b><span>Multi-agent lab workflows</span><small>方法来自 <a href="#no-02">No.02</a> 智港的协商—审批机制</small></li>
-              <li><b>可溯源的文献与知识检索</b><span>Traceable literature retrieval</span><small>方法来自 <a href="#no-07">No.07</a> 小票机的来源溯源</small></li>
-              <li><b>对照与可复现的评估</b><span>Controlled, reproducible evaluation</span><small>方法来自 <a href="#no-03">No.03</a> 天府 TWIN 的 A/B 影子仿真</small></li>
-            </ol>
-          </div>
-
-          <figure class="helix__fig rv" id="helix"><!--helix:start--><svg class="helix__svg" viewBox="0 0 260 660" aria-hidden="true"><path class="rung" d="M177.8,34L82.2,34"/><path class="rung" d="M201.5,50L58.5,50"/><path class="rung" d="M201.5,98L58.5,98"/><path class="rung" d="M177.8,114L82.2,114"/><path class="rung" d="M82.2,162L177.8,162"/><path class="rung" d="M58.5,178L201.5,178"/><path class="rung" d="M58.5,226L201.5,226"/><path class="rung" d="M82.2,242L177.8,242"/><path class="rung" d="M177.8,290L82.2,290"/><path class="rung" d="M201.5,306L58.5,306"/><path class="rung" d="M201.5,354L58.5,354"/><path class="rung" d="M177.8,370L82.2,370"/><path class="rung" d="M82.2,418L177.8,418"/><path class="rung" d="M58.5,434L201.5,434"/><path class="rung" d="M58.5,482L201.5,482"/><path class="rung" d="M82.2,498L177.8,498"/><path class="rung" d="M177.8,546L82.2,546"/><path class="rung" d="M201.5,562L58.5,562"/><path class="rung" d="M201.5,610L58.5,610"/><path class="rung" d="M177.8,626L82.2,626"/><path class="rung rung--main" d="M216,74L44,74"/><circle class="rung-dot" cx="216" cy="74" r="3.4"/><circle class="rung-dot" cx="44" cy="74" r="3.4"/><path class="rung rung--main" d="M44,202L216,202"/><circle class="rung-dot" cx="44" cy="202" r="3.4"/><circle class="rung-dot" cx="216" cy="202" r="3.4"/><path class="rung rung--main" d="M216,330L44,330"/><circle class="rung-dot" cx="216" cy="330" r="3.4"/><circle class="rung-dot" cx="44" cy="330" r="3.4"/><path class="rung rung--main" d="M44,458L216,458"/><circle class="rung-dot" cx="44" cy="458" r="3.4"/><circle class="rung-dot" cx="216" cy="458" r="3.4"/><path class="rung rung--main" d="M216,586L44,586"/><circle class="rung-dot" cx="216" cy="586" r="3.4"/><circle class="rung-dot" cx="44" cy="586" r="3.4"/><path class="hx hx--arts is-back" style="--d:0.00s" pathLength="1" d="M130,10L121.6,14L113.2,18L105,22L97.1,26L89.5,30L82.2,34L75.4,38L69.2,42L63.5,46L58.5,50L54.2,54L50.5,58L47.7,62L45.7,66L44.4,70L44,74L44.4,78L45.7,82L47.7,86L50.5,90L54.2,94L58.5,98L63.5,102L69.2,106L75.4,110L82.2,114L89.5,118L97.1,122L105,126L113.2,130L121.6,134L130,138"/><path class="hx hx--life is-back" style="--d:0.18s" pathLength="1" d="M130,138L121.6,142L113.2,146L105,150L97.1,154L89.5,158L82.2,162L75.4,166L69.2,170L63.5,174L58.5,178L54.2,182L50.5,186L47.7,190L45.7,194L44.4,198L44,202L44.4,206L45.7,210L47.7,214L50.5,218L54.2,222L58.5,226L63.5,230L69.2,234L75.4,238L82.2,242L89.5,246L97.1,250L105,254L113.2,258L121.6,262L130,266"/><path class="hx hx--arts is-back" style="--d:0.36s" pathLength="1" d="M130,266L121.6,270L113.2,274L105,278L97.1,282L89.5,286L82.2,290L75.4,294L69.2,298L63.5,302L58.5,306L54.2,310L50.5,314L47.7,318L45.7,322L44.4,326L44,330L44.4,334L45.7,338L47.7,342L50.5,346L54.2,350L58.5,354L63.5,358L69.2,362L75.4,366L82.2,370L89.5,374L97.1,378L105,382L113.2,386L121.6,390L130,394"/><path class="hx hx--life is-back" style="--d:0.54s" pathLength="1" d="M130,394L121.6,398L113.2,402L105,406L97.1,410L89.5,414L82.2,418L75.4,422L69.2,426L63.5,430L58.5,434L54.2,438L50.5,442L47.7,446L45.7,450L44.4,454L44,458L44.4,462L45.7,466L47.7,470L50.5,474L54.2,478L58.5,482L63.5,486L69.2,490L75.4,494L82.2,498L89.5,502L97.1,506L105,510L113.2,514L121.6,518L130,522"/><path class="hx hx--arts is-back" style="--d:0.72s" pathLength="1" d="M130,522L121.6,526L113.2,530L105,534L97.1,538L89.5,542L82.2,546L75.4,550L69.2,554L63.5,558L58.5,562L54.2,566L50.5,570L47.7,574L45.7,578L44.4,582L44,586L44.4,590L45.7,594L47.7,598L50.5,602L54.2,606L58.5,610L63.5,614L69.2,618L75.4,622L82.2,626L89.5,630L97.1,634L105,638L113.2,642L121.6,646L130,650"/><path class="halo" d="M130,10L138.4,14L146.8,18L155,22L162.9,26L170.5,30L177.8,34L184.6,38L190.8,42L196.5,46L201.5,50L205.8,54L209.5,58L212.3,62L214.3,66L215.6,70L216,74L215.6,78L214.3,82L212.3,86L209.5,90L205.8,94L201.5,98L196.5,102L190.8,106L184.6,110L177.8,114L170.5,118L162.9,122L155,126L146.8,130L138.4,134L130,138"/><path class="hx hx--life" style="--d:0.00s" pathLength="1" d="M130,10L138.4,14L146.8,18L155,22L162.9,26L170.5,30L177.8,34L184.6,38L190.8,42L196.5,46L201.5,50L205.8,54L209.5,58L212.3,62L214.3,66L215.6,70L216,74L215.6,78L214.3,82L212.3,86L209.5,90L205.8,94L201.5,98L196.5,102L190.8,106L184.6,110L177.8,114L170.5,118L162.9,122L155,126L146.8,130L138.4,134L130,138"/><path class="halo" d="M130,138L138.4,142L146.8,146L155,150L162.9,154L170.5,158L177.8,162L184.6,166L190.8,170L196.5,174L201.5,178L205.8,182L209.5,186L212.3,190L214.3,194L215.6,198L216,202L215.6,206L214.3,210L212.3,214L209.5,218L205.8,222L201.5,226L196.5,230L190.8,234L184.6,238L177.8,242L170.5,246L162.9,250L155,254L146.8,258L138.4,262L130,266"/><path class="hx hx--arts" style="--d:0.18s" pathLength="1" d="M130,138L138.4,142L146.8,146L155,150L162.9,154L170.5,158L177.8,162L184.6,166L190.8,170L196.5,174L201.5,178L205.8,182L209.5,186L212.3,190L214.3,194L215.6,198L216,202L215.6,206L214.3,210L212.3,214L209.5,218L205.8,222L201.5,226L196.5,230L190.8,234L184.6,238L177.8,242L170.5,246L162.9,250L155,254L146.8,258L138.4,262L130,266"/><path class="halo" d="M130,266L138.4,270L146.8,274L155,278L162.9,282L170.5,286L177.8,290L184.6,294L190.8,298L196.5,302L201.5,306L205.8,310L209.5,314L212.3,318L214.3,322L215.6,326L216,330L215.6,334L214.3,338L212.3,342L209.5,346L205.8,350L201.5,354L196.5,358L190.8,362L184.6,366L177.8,370L170.5,374L162.9,378L155,382L146.8,386L138.4,390L130,394"/><path class="hx hx--life" style="--d:0.36s" pathLength="1" d="M130,266L138.4,270L146.8,274L155,278L162.9,282L170.5,286L177.8,290L184.6,294L190.8,298L196.5,302L201.5,306L205.8,310L209.5,314L212.3,318L214.3,322L215.6,326L216,330L215.6,334L214.3,338L212.3,342L209.5,346L205.8,350L201.5,354L196.5,358L190.8,362L184.6,366L177.8,370L170.5,374L162.9,378L155,382L146.8,386L138.4,390L130,394"/><path class="halo" d="M130,394L138.4,398L146.8,402L155,406L162.9,410L170.5,414L177.8,418L184.6,422L190.8,426L196.5,430L201.5,434L205.8,438L209.5,442L212.3,446L214.3,450L215.6,454L216,458L215.6,462L214.3,466L212.3,470L209.5,474L205.8,478L201.5,482L196.5,486L190.8,490L184.6,494L177.8,498L170.5,502L162.9,506L155,510L146.8,514L138.4,518L130,522"/><path class="hx hx--arts" style="--d:0.54s" pathLength="1" d="M130,394L138.4,398L146.8,402L155,406L162.9,410L170.5,414L177.8,418L184.6,422L190.8,426L196.5,430L201.5,434L205.8,438L209.5,442L212.3,446L214.3,450L215.6,454L216,458L215.6,462L214.3,466L212.3,470L209.5,474L205.8,478L201.5,482L196.5,486L190.8,490L184.6,494L177.8,498L170.5,502L162.9,506L155,510L146.8,514L138.4,518L130,522"/><path class="halo" d="M130,522L138.4,526L146.8,530L155,534L162.9,538L170.5,542L177.8,546L184.6,550L190.8,554L196.5,558L201.5,562L205.8,566L209.5,570L212.3,574L214.3,578L215.6,582L216,586L215.6,590L214.3,594L212.3,598L209.5,602L205.8,606L201.5,610L196.5,614L190.8,618L184.6,622L177.8,626L170.5,630L162.9,634L155,638L146.8,642L138.4,646L130,650"/><path class="hx hx--life" style="--d:0.72s" pathLength="1" d="M130,522L138.4,526L146.8,530L155,534L162.9,538L170.5,542L177.8,546L184.6,550L190.8,554L196.5,558L201.5,562L205.8,566L209.5,570L212.3,574L214.3,578L215.6,582L216,586L215.6,590L214.3,594L212.3,598L209.5,602L205.8,606L201.5,610L196.5,614L190.8,618L184.6,622L177.8,626L170.5,630L162.9,634L155,638L146.8,642L138.4,646L130,650"/><text class="rung-label" x="130" y="77.8">智能体 Agents</text><text class="rung-label" x="130" y="205.8">多智能体 Multi-agent</text><text class="rung-label" x="130" y="333.8">数字孪生 Digital Twins</text><text class="rung-label" x="130" y="461.8">检索增强 RAG</text><text class="rung-label" x="130" y="589.8">生成式模型 GenAI</text></svg><!--helix:end--></figure>
-
-          <figure class="helix__band rv" aria-hidden="true"><!--helixband:start--><svg class="helix__svg" viewBox="0 0 660 120" aria-hidden="true"><path class="rung" d="M34,84.4L34,35.6"/><path class="rung" d="M50,96.6L50,23.4"/><path class="rung" d="M98,96.6L98,23.4"/><path class="rung" d="M114,84.4L114,35.6"/><path class="rung" d="M162,35.6L162,84.4"/><path class="rung" d="M178,23.4L178,96.6"/><path class="rung" d="M226,23.4L226,96.6"/><path class="rung" d="M242,35.6L242,84.4"/><path class="rung" d="M290,84.4L290,35.6"/><path class="rung" d="M306,96.6L306,23.4"/><path class="rung" d="M354,96.6L354,23.4"/><path class="rung" d="M370,84.4L370,35.6"/><path class="rung" d="M418,35.6L418,84.4"/><path class="rung" d="M434,23.4L434,96.6"/><path class="rung" d="M482,23.4L482,96.6"/><path class="rung" d="M498,35.6L498,84.4"/><path class="rung" d="M546,84.4L546,35.6"/><path class="rung" d="M562,96.6L562,23.4"/><path class="rung" d="M610,96.6L610,23.4"/><path class="rung" d="M626,84.4L626,35.6"/><path class="rung rung--main" d="M74,104L74,16"/><circle class="rung-dot" cx="74" cy="104" r="3.4"/><circle class="rung-dot" cx="74" cy="16" r="3.4"/><path class="rung rung--main" d="M202,16L202,104"/><circle class="rung-dot" cx="202" cy="16" r="3.4"/><circle class="rung-dot" cx="202" cy="104" r="3.4"/><path class="rung rung--main" d="M330,104L330,16"/><circle class="rung-dot" cx="330" cy="104" r="3.4"/><circle class="rung-dot" cx="330" cy="16" r="3.4"/><path class="rung rung--main" d="M458,16L458,104"/><circle class="rung-dot" cx="458" cy="16" r="3.4"/><circle class="rung-dot" cx="458" cy="104" r="3.4"/><path class="rung rung--main" d="M586,104L586,16"/><circle class="rung-dot" cx="586" cy="104" r="3.4"/><circle class="rung-dot" cx="586" cy="16" r="3.4"/><path class="hx hx--arts is-back" style="--d:0.00s" pathLength="1" d="M10,60L14,55.7L18,51.4L22,47.2L26,43.2L30,39.3L34,35.6L38,32.1L42,28.9L46,26L50,23.4L54,21.2L58,19.3L62,17.9L66,16.8L70,16.2L74,16L78,16.2L82,16.8L86,17.9L90,19.3L94,21.2L98,23.4L102,26L106,28.9L110,32.1L114,35.6L118,39.3L122,43.2L126,47.2L130,51.4L134,55.7L138,60"/><path class="hx hx--life is-back" style="--d:0.18s" pathLength="1" d="M138,60L142,55.7L146,51.4L150,47.2L154,43.2L158,39.3L162,35.6L166,32.1L170,28.9L174,26L178,23.4L182,21.2L186,19.3L190,17.9L194,16.8L198,16.2L202,16L206,16.2L210,16.8L214,17.9L218,19.3L222,21.2L226,23.4L230,26L234,28.9L238,32.1L242,35.6L246,39.3L250,43.2L254,47.2L258,51.4L262,55.7L266,60"/><path class="hx hx--arts is-back" style="--d:0.36s" pathLength="1" d="M266,60L270,55.7L274,51.4L278,47.2L282,43.2L286,39.3L290,35.6L294,32.1L298,28.9L302,26L306,23.4L310,21.2L314,19.3L318,17.9L322,16.8L326,16.2L330,16L334,16.2L338,16.8L342,17.9L346,19.3L350,21.2L354,23.4L358,26L362,28.9L366,32.1L370,35.6L374,39.3L378,43.2L382,47.2L386,51.4L390,55.7L394,60"/><path class="hx hx--life is-back" style="--d:0.54s" pathLength="1" d="M394,60L398,55.7L402,51.4L406,47.2L410,43.2L414,39.3L418,35.6L422,32.1L426,28.9L430,26L434,23.4L438,21.2L442,19.3L446,17.9L450,16.8L454,16.2L458,16L462,16.2L466,16.8L470,17.9L474,19.3L478,21.2L482,23.4L486,26L490,28.9L494,32.1L498,35.6L502,39.3L506,43.2L510,47.2L514,51.4L518,55.7L522,60"/><path class="hx hx--arts is-back" style="--d:0.72s" pathLength="1" d="M522,60L526,55.7L530,51.4L534,47.2L538,43.2L542,39.3L546,35.6L550,32.1L554,28.9L558,26L562,23.4L566,21.2L570,19.3L574,17.9L578,16.8L582,16.2L586,16L590,16.2L594,16.8L598,17.9L602,19.3L606,21.2L610,23.4L614,26L618,28.9L622,32.1L626,35.6L630,39.3L634,43.2L638,47.2L642,51.4L646,55.7L650,60"/><path class="halo" d="M10,60L14,64.3L18,68.6L22,72.8L26,76.8L30,80.7L34,84.4L38,87.9L42,91.1L46,94L50,96.6L54,98.8L58,100.7L62,102.1L66,103.2L70,103.8L74,104L78,103.8L82,103.2L86,102.1L90,100.7L94,98.8L98,96.6L102,94L106,91.1L110,87.9L114,84.4L118,80.7L122,76.8L126,72.8L130,68.6L134,64.3L138,60"/><path class="hx hx--life" style="--d:0.00s" pathLength="1" d="M10,60L14,64.3L18,68.6L22,72.8L26,76.8L30,80.7L34,84.4L38,87.9L42,91.1L46,94L50,96.6L54,98.8L58,100.7L62,102.1L66,103.2L70,103.8L74,104L78,103.8L82,103.2L86,102.1L90,100.7L94,98.8L98,96.6L102,94L106,91.1L110,87.9L114,84.4L118,80.7L122,76.8L126,72.8L130,68.6L134,64.3L138,60"/><path class="halo" d="M138,60L142,64.3L146,68.6L150,72.8L154,76.8L158,80.7L162,84.4L166,87.9L170,91.1L174,94L178,96.6L182,98.8L186,100.7L190,102.1L194,103.2L198,103.8L202,104L206,103.8L210,103.2L214,102.1L218,100.7L222,98.8L226,96.6L230,94L234,91.1L238,87.9L242,84.4L246,80.7L250,76.8L254,72.8L258,68.6L262,64.3L266,60"/><path class="hx hx--arts" style="--d:0.18s" pathLength="1" d="M138,60L142,64.3L146,68.6L150,72.8L154,76.8L158,80.7L162,84.4L166,87.9L170,91.1L174,94L178,96.6L182,98.8L186,100.7L190,102.1L194,103.2L198,103.8L202,104L206,103.8L210,103.2L214,102.1L218,100.7L222,98.8L226,96.6L230,94L234,91.1L238,87.9L242,84.4L246,80.7L250,76.8L254,72.8L258,68.6L262,64.3L266,60"/><path class="halo" d="M266,60L270,64.3L274,68.6L278,72.8L282,76.8L286,80.7L290,84.4L294,87.9L298,91.1L302,94L306,96.6L310,98.8L314,100.7L318,102.1L322,103.2L326,103.8L330,104L334,103.8L338,103.2L342,102.1L346,100.7L350,98.8L354,96.6L358,94L362,91.1L366,87.9L370,84.4L374,80.7L378,76.8L382,72.8L386,68.6L390,64.3L394,60"/><path class="hx hx--life" style="--d:0.36s" pathLength="1" d="M266,60L270,64.3L274,68.6L278,72.8L282,76.8L286,80.7L290,84.4L294,87.9L298,91.1L302,94L306,96.6L310,98.8L314,100.7L318,102.1L322,103.2L326,103.8L330,104L334,103.8L338,103.2L342,102.1L346,100.7L350,98.8L354,96.6L358,94L362,91.1L366,87.9L370,84.4L374,80.7L378,76.8L382,72.8L386,68.6L390,64.3L394,60"/><path class="halo" d="M394,60L398,64.3L402,68.6L406,72.8L410,76.8L414,80.7L418,84.4L422,87.9L426,91.1L430,94L434,96.6L438,98.8L442,100.7L446,102.1L450,103.2L454,103.8L458,104L462,103.8L466,103.2L470,102.1L474,100.7L478,98.8L482,96.6L486,94L490,91.1L494,87.9L498,84.4L502,80.7L506,76.8L510,72.8L514,68.6L518,64.3L522,60"/><path class="hx hx--arts" style="--d:0.54s" pathLength="1" d="M394,60L398,64.3L402,68.6L406,72.8L410,76.8L414,80.7L418,84.4L422,87.9L426,91.1L430,94L434,96.6L438,98.8L442,100.7L446,102.1L450,103.2L454,103.8L458,104L462,103.8L466,103.2L470,102.1L474,100.7L478,98.8L482,96.6L486,94L490,91.1L494,87.9L498,84.4L502,80.7L506,76.8L510,72.8L514,68.6L518,64.3L522,60"/><path class="halo" d="M522,60L526,64.3L530,68.6L534,72.8L538,76.8L542,80.7L546,84.4L550,87.9L554,91.1L558,94L562,96.6L566,98.8L570,100.7L574,102.1L578,103.2L582,103.8L586,104L590,103.8L594,103.2L598,102.1L602,100.7L606,98.8L610,96.6L614,94L618,91.1L622,87.9L626,84.4L630,80.7L634,76.8L638,72.8L642,68.6L646,64.3L650,60"/><path class="hx hx--life" style="--d:0.72s" pathLength="1" d="M522,60L526,64.3L530,68.6L534,72.8L538,76.8L542,80.7L546,84.4L550,87.9L554,91.1L558,94L562,96.6L566,98.8L570,100.7L574,102.1L578,103.2L582,103.8L586,104L590,103.8L594,103.2L598,102.1L602,100.7L606,98.8L610,96.6L614,94L618,91.1L622,87.9L626,84.4L630,80.7L634,76.8L638,72.8L642,68.6L646,64.3L650,60"/></svg><!--helixband:end--></figure>
-
-          <div class="strand strand--arts rv">
-            <h3><i class="sw sw--ochre"></i>人文与艺术<span>Humanities &amp; Arts</span></h3>
-            <p class="strand__status">已有作品</p>
-            <ol>
-              <li><b>记忆、时间与叙事</b><span>Memory, time &amp; narrative</span><small><a href="#no-08">No.08</a> 人生时光机</small></li>
-              <li><b>空间、场所与文化</b><span>Space, place &amp; culture</span><small><a href="#no-04">No.04</a> 商大元境 · <a href="#no-06">No.06</a> 开图</small></li>
-              <li><b>科学传播与美育</b><span>Science communication &amp; aesthetics</span><small><a href="#no-10">No.10</a> 太阳系漫游 · 少儿 AI 课程</small></li>
-              <li><b>博物馆与文化遗产</b><span>Museums &amp; cultural heritage</span><small>博物馆志愿服务 · 古建筑博物馆实习</small></li>
-            </ol>
-          </div>
+        <div class="brief">
+          <p class="lede rv">写得了代码，也跑得了现场。<br />现在有整段空档，每周可投入 5–7 天。</p>
+          <p class="dropcap rv">我是陈俊烨（CJY），浙江工商大学信电人工智能学院硕士研究生，本科读软件工程。我是一名 <b>AI 应用开发者</b>，用 Vibe Coding 把 AI 嵌进真实场景：临床病历、高校管理、港口与机场的数字孪生、课堂与企业培训。在团队里，我补的是<em class="hl">「部署上线」这一环：从一段能跑的代码，到一个真实在用的系统</em>。</p>
+          <p class="rv">写代码之外，我也一直在 AI 活动的现场：11 个月、29 场黑客松、训练营与开发者大会，从参赛者、志愿者一路做到主办方负责人、带队教练和评委，8 次获奖。我也站上讲台，教 7–13 岁的孩子做 AI 游戏，给企业 HR 讲智能体搭建。</p>
+          <p class="rv">现在我有一整段<b>空档期</b>：时间充裕，校内课题和校外项目都能兼顾，<em class="hl">每周可以投入 5–7 天</em>。想法我不缺，更要紧的是能把它做出来——下面的作品，除一件校内系统外都能直接点开。如果你的团队需要一个能把 AI 想法很快做成可用系统、也能把线下活动跑下来的人，欢迎<a href="#correspondence">来信</a>。</p>
         </div>
 
-        <p class="methods"><span>相连的方法</span>智能体 · 多智能体 · 数字孪生 · 检索增强 RAG · 生成式模型</p>
-        <p class="figcap"><b>Fig. 2</b>　双链。<i class="sw sw--green"></i>石绿为生命科学，<i class="sw sw--ochre"></i>赭石为人文艺术，横档为连接二者的方法。</p>
+        <dl class="facts rv">
+          <div class="facts__key"><dt>每周可投入</dt><dd><b>5–7</b>天</dd><small>空档期 · 校内外兼顾</small></div>
+          <div><dt>在线作品</dt><dd><b>13</b>件</dd><small>每一件都能点开</small></div>
+          <div><dt>AI 赛事与活动</dt><dd><b>29</b>场</dd><small>9 种角色全走过</small></div>
+          <div><dt>获奖</dt><dd><b>8</b>次</dd><small>含 2 次带队获奖</small></div>
+        </dl>
+
+        <h3 class="sub rv">擅长<span>Skills</span></h3>
+        <ul class="skills rv">
+          <li class="is-key">Vibe Coding</li>
+          <li class="is-key">AI Agent / Multi-Agent</li>
+          <li>AI 数字员工</li>
+          <li>LLM 应用</li>
+          <li>多模态 AI</li>
+          <li>数字孪生</li>
+          <li>教育数字化</li>
+          <li>Web 全栈 · Java</li>
+          <li>云部署</li>
+          <li>AI 工具推广</li>
+        </ul>
+
+        <figure class="film rv">
+          <div class="film__frame">
+            <video controls playsinline preload="none" poster="media/cjy-intro-poster.webp" width="1920" height="1080">
+              <source src="media/cjy-intro.mp4" type="video/mp4" />
+              <p>浏览器无法播放这段视频，可以<a href="media/cjy-intro.mp4">直接下载</a>（MP4 · 4 MB）。</p>
+            </video>
+          </div>
+          <figcaption><b>Film 1</b>　九十秒自述：工牌、校内三套系统、讲台、校外现场、九种角色与五条信条。无声，约 4 MB。<span>A self-portrait in ninety seconds, without sound.</span></figcaption>
+        </figure>
       </div>
     </section>
 
-    <!-- ================================================= III 标本 -->
+    <!-- ================================================= II 标本 -->
     <section class="ch" id="specimens">
       <header class="ch__margin">
-        <span class="ch__no">III</span>
+        <span class="ch__no">II</span>
         <h2 class="ch__title">标本<span>Specimens</span></h2>
       </header>
       <div class="ch__body ch__body--wide">
-        <p class="lede rv">十二件，均已部署上线、可直接访问；第十三件正在采集。图版取自运行中的系统。</p>
+        <p class="lede rv">十四件，按重要性分三类：有合作方、有人在用的在前，我自己的创意在后。除一件校内系统，都能直接点开。</p>
+        <ul class="kinds rv" aria-label="标本分类">
+          <li><a href="#kind-a"><b>甲</b>合作与在用<span>6 件</span></a></li>
+          <li><a href="#kind-b"><b>乙</b>行业系统<span>5 件</span></a></li>
+          <li><a href="#kind-c"><b>丙</b>创意与原型<span>3 件</span></a></li>
+        </ul>
 
-        <article class="plate rv" id="no-01">
-          <figure class="plate__fig">
-            <img src="works/medagent-lg.webp" width="1440" height="900" alt="AI 病历智能体登录页：临床医生与医务科质控两类入口，下方写明 AI 仅生成草稿、经医生确认方可归档" loading="lazy" decoding="async" />
-            <figcaption>Pl. 01</figcaption>
-          </figure>
-          <div class="plate__text">
-            <p class="no">No. 01</p>
-            <h3>AI · 病历智能体</h3>
-            <p class="en">A Draft That Waits for the Doctor</p>
-            <p class="desc">面向县级医院的病历智能体。医生口述，多个智能体协作整理出病历草稿；AI 只写草稿，经医生确认方可归档。缺失的字段留空并警示，严禁臆造；全程留痕，可供医务科质控审计。</p>
-            <dl class="tag">
-              <div><dt>分类</dt><dd>医疗智能体 × 人在回路</dd></div>
-              <div><dt>角色</dt><dd>系统设计 · 开发 · 部署上线</dd></div>
-              <div><dt>方法</dt><dd>语音驱动 · 多智能体协作 · 人在回路</dd></div>
-            </dl>
-            <a class="go" href="http://60.205.204.162/medagent/" target="_blank" rel="noopener">访问标本 ↗<span>60.205.204.162/medagent</span></a>
+        <!-- ------------------------------------------- 甲 -->
+        <section class="kind" id="kind-a" aria-labelledby="kind-a-title">
+          <header class="kind__head rv">
+            <p class="kind__no" aria-hidden="true">甲</p>
+            <h3 id="kind-a-title">合作与在用<span>Class A · Collaborations &amp; In Use</span></h3>
+            <p class="kind__note">有合作方、有真实使用者的系统，排在最前。</p>
+          </header>
+
+          <article class="plate rv" id="no-01">
+            <figure class="plate__fig">
+              <img src="works/mra-lg.webp" width="1440" height="900" alt="住院病历书写工作台：按法定时限排列的今日书写任务、生成草稿入口与在院患者统计" loading="lazy" decoding="async" />
+              <figcaption>Pl. 01</figcaption>
+            </figure>
+            <div class="plate__text">
+              <p class="no">No. 01<span class="flag">合作</span></p>
+              <h3>AI 病历智能体 · 住院病历书写工作台</h3>
+              <p class="en">Inpatient Notes, Drafted by Agents</p>
+              <p class="desc">与中国科学院杭州医学研究所的未来导师合作。工作台按法定时限排出当天的书写任务——入院记录 24 小时内、首次病程 8 小时内——多智能体实时生成草稿，医生确认后方可归档。演示患者均已脱敏，其中一例是真实问诊录音，本地转写后全流程运行。</p>
+              <dl class="tag">
+                <div><dt>分类</dt><dd>医疗 AI × 多智能体</dd></div>
+                <div><dt>合作</dt><dd>中国科学院杭州医学研究所 · 未来导师</dd></div>
+                <div><dt>方法</dt><dd>多智能体草稿 · 法定时限任务流 · 本地转写脱敏</dd></div>
+              </dl>
+              <a class="go" href="http://60.205.204.162/mra/" target="_blank" rel="noopener">访问标本 ↗<span>60.205.204.162/mra</span></a>
+            </div>
+          </article>
+
+          <article class="plate rv" id="no-02">
+            <figure class="plate__fig">
+              <img src="works/medagent-lg.webp" width="1440" height="900" alt="DrCopilot 登录页：临床医生与医务科质控两类入口，下方写明 AI 仅生成草稿、经医生确认方可归档" loading="lazy" decoding="async" />
+              <figcaption>Pl. 02</figcaption>
+            </figure>
+            <div class="plate__text">
+              <p class="no">No. 02<span class="flag">医院场景</span></p>
+              <h3>DrCopilot · 临床智能病历系统</h3>
+              <p class="en">A Draft That Waits for the Doctor</p>
+              <p class="desc">为县级医院住院病历场景打造的临床智能体：医生用语音口述，多个智能体协作生成病历草稿，经医生确认后才能归档。系统按角色分入口——临床医生工作台与医务科质控端——并把安全底线写进产品：缺失字段留空警示、严禁臆造，全程留痕可审计。目前已迭代到第二版。</p>
+              <dl class="tag">
+                <div><dt>分类</dt><dd>医疗 AI × 人在回路</dd></div>
+                <div><dt>角色</dt><dd>系统设计 · 开发 · 部署上线</dd></div>
+                <div><dt>方法</dt><dd>语音驱动 · 多智能体协作 · 审计留痕</dd></div>
+              </dl>
+              <a class="go" href="http://60.205.204.162/medagent/" target="_blank" rel="noopener">访问标本 ↗<span>60.205.204.162/medagent</span></a>
+            </div>
+          </article>
+
+          <article class="archive rv" id="no-03">
+            <span class="seal archive__seal" aria-hidden="true">藏</span>
+            <div class="archive__text">
+              <p class="no">No. 03<span class="flag">校内系统</span></p>
+              <h3>研究生院督导管理系统</h3>
+              <p class="en">Teaching Supervision, Graduate School of ZJGSU</p>
+              <p class="desc">为浙江工商大学研究生院开发、供研究生院使用的教学督导管理系统，我是开发者。系统涉及校内平台数据，不公开地址与截图。</p>
+            </div>
+            <p class="archive__note">库房藏品 · 不对外展出<span>In the archive, not on display</span></p>
+          </article>
+
+          <div class="cabinet">
+            <article class="card rv" id="no-04">
+              <img src="works/hackathon.webp" width="960" height="600" alt="首届 AI 黑客松大赛作品展台" loading="lazy" decoding="async" />
+              <p class="no">No. 04<span class="flag">官方平台</span></p>
+              <h3>首届 AI 黑客松大赛作品展台</h3>
+              <p class="en">AI Hackathon Gallery</p>
+              <p class="desc">浙江工商大学信电学院 × 萨塞克斯人工智能学院首届 AI 黑客松的官方展台：18 件作品、34 名参赛者、5 条赛道。开发、部署和宣传落地设计都是我做的——办赛的人自己写办赛的系统。</p>
+              <p class="rel">见记录 <a href="#ev-0612">2026.06.12 宣传页落地设计</a></p>
+              <a class="go" href="https://zjsu-ai-hackathon.vercel.app/" target="_blank" rel="noopener">访问 ↗<span>zjsu-ai-hackathon.vercel.app</span></a>
+            </article>
+            <article class="card rv" id="no-05">
+              <img src="works/meetshrimp.webp" width="960" height="600" alt="会议室预约智能体的三维空间孪生" loading="lazy" decoding="async" />
+              <p class="no">No. 05<span class="flag">合作 · 导师课题</span></p>
+              <h3>会议室预约虾 · 三维现实模拟</h3>
+              <p class="en">Meeting-Room Agent</p>
+              <p class="desc">信电楼 6 间会议室的空间孪生：三维场景、时段表与预约动作是同一份状态的三种视图，配全天时间轴回放，沉淀千余条历史预约。与诸葛斌导师的课题探索。</p>
+              <p class="rel">见履历 <a href="#campus-agents">「小龙虾」课程智能体矩阵</a></p>
+              <a class="go" href="https://zjgsu-y1k4.vercel.app/" target="_blank" rel="noopener">访问 ↗<span>zjgsu-y1k4.vercel.app</span></a>
+            </article>
+            <article class="card rv" id="no-06">
+              <img src="works/solar.webp" width="960" height="600" alt="由真实星历驱动的太阳系三维模拟" loading="lazy" decoding="async" />
+              <p class="no">No. 06<span class="flag">在用 · 课堂教具</span></p>
+              <h3>太阳系漫游</h3>
+              <p class="en">Solar System Explorer</p>
+              <p class="desc">由真实星历驱动：可调倍速、自由飞行、行星导览与语音解说。它是我在良渚给 7–13 岁孩子上课时真正用的教具。</p>
+              <p class="rel">见履历 <a href="#teach-liangzhu">2026.04–09 良渚少儿 AI 课</a></p>
+              <a class="go" href="https://virtual-universe-eight.vercel.app/" target="_blank" rel="noopener">访问 ↗<span>virtual-universe-eight.vercel.app</span></a>
+            </article>
           </div>
-        </article>
+        </section>
 
-        <article class="plate rv" id="no-02">
-          <figure class="plate__fig">
-            <img src="works/smart-port-lg.webp" width="1440" height="900" alt="智港数字员工协同平台：港口三维孪生与五个智能体的协同日志" loading="lazy" decoding="async" />
-            <figcaption>Pl. 02</figcaption>
-          </figure>
-          <div class="plate__text">
-            <p class="no">No. 02</p>
-            <h3>智港 · 数字员工协同平台</h3>
-            <p class="en">Smart Port — A Digital Workforce</p>
-            <p class="desc">港口三维孪生之上，五个智能体——单证、配载、安全、调度、执行——相互协商、逐级审批，接管集装箱从订舱到内陆交付的全流程。决策过程写成协同日志，可观察，也可评估。</p>
-            <dl class="tag">
-              <div><dt>分类</dt><dd>数字孪生 × 多智能体</dd></div>
-              <div><dt>角色</dt><dd>系统设计 · 开发 · 部署上线</dd></div>
-              <div><dt>方法</dt><dd>多智能体协同 · Three.js · 实时数据</dd></div>
-            </dl>
-            <a class="go" href="https://smart-port-omega.vercel.app/" target="_blank" rel="noopener">访问标本 ↗<span>smart-port-omega.vercel.app</span></a>
+        <!-- ------------------------------------------- 乙 -->
+        <section class="kind" id="kind-b" aria-labelledby="kind-b-title">
+          <header class="kind__head rv">
+            <p class="kind__no" aria-hidden="true">乙</p>
+            <h3 id="kind-b-title">行业系统<span>Class B · Industry Systems</span></h3>
+            <p class="kind__note">面向港口、机场、油田与校园，可以直接运行的系统。</p>
+          </header>
+
+          <article class="plate rv" id="no-07">
+            <figure class="plate__fig">
+              <img src="works/smart-port-lg.webp" width="1440" height="900" alt="智港数字员工协同平台：港口三维孪生与五个智能体的协同日志" loading="lazy" decoding="async" />
+              <figcaption>Pl. 03</figcaption>
+            </figure>
+            <div class="plate__text">
+              <p class="no">No. 07</p>
+              <h3>智港 · 数字员工协同平台</h3>
+              <p class="en">Smart Port — A Digital Workforce</p>
+              <p class="desc">港口三维孪生之上，五个智能体——单证、配载、安全、调度、执行——相互协商、逐级审批，接管集装箱从订舱到内陆交付的全流程。决策过程写成协同日志，可观察，也可评估。</p>
+              <dl class="tag">
+                <div><dt>分类</dt><dd>数字孪生 × 多智能体</dd></div>
+                <div><dt>角色</dt><dd>系统设计 · 开发 · 部署上线</dd></div>
+                <div><dt>方法</dt><dd>多智能体协同 · Three.js · 实时数据</dd></div>
+              </dl>
+              <a class="go" href="https://smart-port-omega.vercel.app/" target="_blank" rel="noopener">访问标本 ↗<span>smart-port-omega.vercel.app</span></a>
+            </div>
+          </article>
+
+          <article class="plate rv" id="no-08">
+            <figure class="plate__fig">
+              <img src="works/aerotwin-lg.webp" width="1440" height="900" alt="天府 TWIN：成都天府国际机场运行孪生与两套调度算法的实时对比" loading="lazy" decoding="async" />
+              <figcaption>Pl. 04</figcaption>
+            </figure>
+            <div class="plate__text">
+              <p class="no">No. 08</p>
+              <h3>天府 TWIN · 调度算法 A/B 影子仿真</h3>
+              <p class="en">TianFu TWIN — A/B Shadow Simulation</p>
+              <p class="desc">成都天府国际机场的运行孪生。基线 FCFS 与智能调度在同一份时刻表下并行推演，逐项对比准点率、平均延误、滑入时间、离场架次与跑道占用——有基线、有对照、有多指标、有可复现的同一输入。</p>
+              <dl class="tag">
+                <div><dt>分类</dt><dd>数字孪生 × 算法对照实验</dd></div>
+                <div><dt>角色</dt><dd>系统设计 · 算法实现 · 开发部署</dd></div>
+                <div><dt>方法</dt><dd>影子仿真 · 调度算法 · 多指标评估</dd></div>
+              </dl>
+              <a class="go" href="https://aerotwin-tfu.vercel.app/" target="_blank" rel="noopener">访问标本 ↗<span>aerotwin-tfu.vercel.app</span></a>
+            </div>
+          </article>
+
+          <div class="cabinet">
+            <article class="card rv" id="no-09">
+              <img src="works/campus.webp" width="960" height="600" alt="商大元境：浙江工商大学下沙校区三维数字孪生" loading="lazy" decoding="async" />
+              <p class="no">No. 09</p>
+              <h3>商大元境 · CampusTwin X</h3>
+              <p class="en">A Campus, Addressable in Words</p>
+              <p class="desc">以 OpenStreetMap 真实地理数据重建浙江工商大学下沙校区：422 栋楼宇、160 条道路、733 棵树木。一句「帮我找一个 10 人会议室」就能操作空间。</p>
+              <a class="go" href="http://121.43.80.231/campus/" target="_blank" rel="noopener">访问 ↗<span>121.43.80.231/campus</span></a>
+            </article>
+            <article class="card rv" id="no-10">
+              <img src="works/deepblue.webp" width="960" height="600" alt="海上钻井平台的数字孪生" loading="lazy" decoding="async" />
+              <p class="no">No. 10</p>
+              <h3>DEEPBLUE RIG · 海上油田数字孪生</h3>
+              <p class="en">Offshore Platform Twin</p>
+              <p class="desc">钻井平台设备健康状态（运行 / 告警 / 故障 / 离线）实时汇总，天气、时段与画质可切换，用于高风险作业的态势呈现。</p>
+              <a class="go" href="https://deepblue-rig.vercel.app/" target="_blank" rel="noopener">访问 ↗<span>deepblue-rig.vercel.app</span></a>
+            </article>
+            <article class="card rv" id="no-11">
+              <img src="works/virtual-house.webp" width="960" height="600" alt="参数化三维样板间" loading="lazy" decoding="async" />
+              <p class="no">No. 11</p>
+              <h3>虚拟看房 · 样板间漫游</h3>
+              <p class="en">Virtual Showroom</p>
+              <p class="desc">户型、材质、家具、灯光与天气实时可调；验证同一套三维能力从工业场景向日常场景的迁移。</p>
+              <a class="go" href="https://virtual-reality-mocha.vercel.app/" target="_blank" rel="noopener">访问 ↗<span>virtual-reality-mocha.vercel.app</span></a>
+            </article>
           </div>
-        </article>
+        </section>
 
-        <article class="plate rv" id="no-03">
-          <figure class="plate__fig">
-            <img src="works/aerotwin-lg.webp" width="1440" height="900" alt="天府 TWIN：成都天府国际机场运行孪生与两套调度算法的实时对比" loading="lazy" decoding="async" />
-            <figcaption>Pl. 03</figcaption>
-          </figure>
-          <div class="plate__text">
-            <p class="no">No. 03</p>
-            <h3>天府 TWIN · 调度算法 A/B 影子仿真</h3>
-            <p class="en">TianFu TWIN — A/B Shadow Simulation</p>
-            <p class="desc">成都天府国际机场的运行孪生。基线 FCFS 与智能调度在同一份时刻表下并行推演，逐项对比准点率、平均延误、滑入时间、离场架次与跑道占用——有基线、有对照、有多指标、有可复现的同一输入。</p>
-            <dl class="tag">
-              <div><dt>分类</dt><dd>数字孪生 × 算法对照实验</dd></div>
-              <div><dt>角色</dt><dd>系统设计 · 算法实现 · 开发部署</dd></div>
-              <div><dt>方法</dt><dd>影子仿真 · 调度算法 · 多指标评估</dd></div>
-            </dl>
-            <a class="go" href="http://aerotwin-tfu.vercel.app/" target="_blank" rel="noopener">访问标本 ↗<span>aerotwin-tfu.vercel.app</span></a>
+        <!-- ------------------------------------------- 丙 -->
+        <section class="kind" id="kind-c" aria-labelledby="kind-c-title">
+          <header class="kind__head rv">
+            <p class="kind__no" aria-hidden="true">丙</p>
+            <h3 id="kind-c-title">创意与原型<span>Class C · Ideas &amp; Prototypes</span></h3>
+            <p class="kind__note">我自己的想法：先做出来，再看它能走多远。</p>
+          </header>
+
+          <div class="cabinet">
+            <article class="card rv" id="no-12">
+              <img src="works/kaitu.webp" width="960" height="600" alt="开图 Unfold 的三维旅行场景" loading="lazy" decoding="async" />
+              <p class="no">No. 12<span class="flag">参赛原型</span></p>
+              <h3>开图 Unfold · 3D 旅行一体化助手</h3>
+              <p class="en">Unfold — A Place, Opened Three Ways</p>
+              <p class="desc">实拍全景接成可漫游的三维场地，行程智能体串联风景、美食与核销。2026 影石 Insta360 Bold Maker 赛道一原型。</p>
+              <p class="rel">见记录 <a href="#ev-0921">2026.09 南京影石 Bold Maker 挑战赛</a></p>
+              <a class="go" href="http://60.205.204.162/kaitu/" target="_blank" rel="noopener">访问 ↗<span>60.205.204.162/kaitu</span></a>
+            </article>
+            <article class="card rv" id="no-13">
+              <img src="works/time-machine.webp" width="960" height="600" alt="人生时光机：从当下到六十年后的七个时间切片" loading="lazy" decoding="async" />
+              <p class="no">No. 13</p>
+              <h3>人生时光机 · Personal Time Capsule</h3>
+              <p class="en">Seven Slices of a Life</p>
+              <p class="desc">从当下到 +60 年的七个时间切片。人脸只用于单次请求，不落盘、不入库、不写日志——把「同意」与「不留存」做成看得见的部分。</p>
+              <a class="go" href="https://time-machine-6iso.vercel.app" target="_blank" rel="noopener">访问 ↗<span>time-machine-6iso.vercel.app</span></a>
+            </article>
+            <article class="card rv" id="no-14">
+              <img src="works/receipt.webp" width="960" height="600" alt="CJY 小票机：把回答打印成带来源的小票" loading="lazy" decoding="async" />
+              <p class="no">No. 14</p>
+              <h3>CJY 小票机 · 问答收据打印机</h3>
+              <p class="en">A Receipt That Cites Its Sources</p>
+              <p class="desc">检索增强生成的器物化：每个回答打印成带来源清单、流水号与时间戳的小票，让模型的话能回指到证据。</p>
+              <a class="go" href="http://60.205.204.162/cjy/" target="_blank" rel="noopener">访问 ↗<span>60.205.204.162/cjy</span></a>
+            </article>
           </div>
-        </article>
-
-        <article class="plate rv" id="no-04">
-          <figure class="plate__fig">
-            <img src="works/campus-lg.webp" width="1440" height="900" alt="商大元境：浙江工商大学下沙校区三维数字孪生" loading="lazy" decoding="async" />
-            <figcaption>Pl. 04</figcaption>
-          </figure>
-          <div class="plate__text">
-            <p class="no">No. 04</p>
-            <h3>商大元境 · CampusTwin X</h3>
-            <p class="en">A Campus, Addressable in Words</p>
-            <p class="desc">以 OpenStreetMap 真实地理数据重建浙江工商大学下沙校区：422 栋楼宇、160 条道路、733 棵树木。一句「帮我找一个 10 人会议室」即可操作空间——三维孪生在这里不是展品，而是语言与场所之间的接口。</p>
-            <dl class="tag">
-              <div><dt>分类</dt><dd>数字孪生 × 自然语言接口</dd></div>
-              <div><dt>角色</dt><dd>系统设计 · 开发 · 部署上线</dd></div>
-              <div><dt>方法</dt><dd>OSM 地理数据 · 大场景三维重建 · LLM 接口</dd></div>
-            </dl>
-            <a class="go" href="http://121.43.80.231/campus/" target="_blank" rel="noopener">访问标本 ↗<span>121.43.80.231/campus</span></a>
-          </div>
-        </article>
-
-        <h3 class="cabinet__head rv">更多标本<span>Further Specimens</span></h3>
-        <div class="cabinet">
-          <article class="card rv" id="no-05">
-            <img src="works/meetshrimp.webp" width="960" height="600" alt="会议室预约智能体的三维空间孪生" loading="lazy" decoding="async" />
-            <p class="no">No. 05</p>
-            <h3>会议室预约虾 · 三维现实模拟</h3>
-            <p class="en">Meeting-Room Agent</p>
-            <p class="desc">6 间会议室的空间孪生与预约智能体；三维场景、时段表与预约动作是同一状态的三种视图。与诸葛斌导师课题探索。</p>
-            <a class="go" href="https://zjgsu-y1k4.vercel.app/" target="_blank" rel="noopener">访问 ↗<span>zjgsu-y1k4.vercel.app</span></a>
-          </article>
-          <article class="card rv" id="no-06">
-            <img src="works/kaitu.webp" width="960" height="600" alt="开图 Unfold 的三维旅行场景" loading="lazy" decoding="async" />
-            <p class="no">No. 06</p>
-            <h3>开图 Unfold · 3D 旅行一体化助手</h3>
-            <p class="en">Unfold — A Place, Opened Three Ways</p>
-            <p class="desc">实拍全景接成可漫游的三维场地，行程智能体串联风景、美食与核销。2026 影石 Insta360 Bold Maker 赛道一原型。</p>
-            <a class="go" href="http://60.205.204.162/kaitu/" target="_blank" rel="noopener">访问 ↗<span>60.205.204.162/kaitu</span></a>
-          </article>
-          <article class="card rv" id="no-07">
-            <img src="works/receipt.webp" width="960" height="600" alt="CJY 小票机：把回答打印成带来源的小票" loading="lazy" decoding="async" />
-            <p class="no">No. 07</p>
-            <h3>CJY 小票机 · 问答收据打印机</h3>
-            <p class="en">A Receipt That Cites Its Sources</p>
-            <p class="desc">检索增强生成的器物化：每个回答打印成带来源清单、流水号与时间戳的小票，让模型的话能回指到证据。</p>
-            <a class="go" href="http://60.205.204.162/cjy/" target="_blank" rel="noopener">访问 ↗<span>60.205.204.162/cjy</span></a>
-          </article>
-          <article class="card rv" id="no-08">
-            <img src="works/time-machine.webp" width="960" height="600" alt="人生时光机：从当下到六十年后的七个时间切片" loading="lazy" decoding="async" />
-            <p class="no">No. 08</p>
-            <h3>人生时光机 · Personal Time Capsule</h3>
-            <p class="en">Seven Slices of a Life</p>
-            <p class="desc">从当下到 +60 年的七个时间切片。人脸只用于单次请求，不落盘、不入库、不写日志——把「同意」与「不留存」做成看得见的部分。</p>
-            <a class="go" href="https://time-machine-6iso.vercel.app" target="_blank" rel="noopener">访问 ↗<span>time-machine-6iso.vercel.app</span></a>
-          </article>
-          <article class="card rv" id="no-09">
-            <img src="works/deepblue.webp" width="960" height="600" alt="海上钻井平台的数字孪生" loading="lazy" decoding="async" />
-            <p class="no">No. 09</p>
-            <h3>DEEPBLUE RIG · 海上油田数字孪生</h3>
-            <p class="en">Offshore Platform Twin</p>
-            <p class="desc">钻井平台设备健康状态实时汇总，天气、时段与画质可切换，用于高风险作业的态势呈现。</p>
-            <a class="go" href="https://deepblue-rig.vercel.app/" target="_blank" rel="noopener">访问 ↗<span>deepblue-rig.vercel.app</span></a>
-          </article>
-          <article class="card rv" id="no-10">
-            <img src="works/solar.webp" width="960" height="600" alt="由真实星历驱动的太阳系三维模拟" loading="lazy" decoding="async" />
-            <p class="no">No. 10</p>
-            <h3>太阳系漫游</h3>
-            <p class="en">Solar System Explorer</p>
-            <p class="desc">由真实星历驱动，可倍速、可自由飞行、带语音解说；是 7–13 岁少儿 AI 课程里真正用过的教具。</p>
-            <a class="go" href="https://virtual-universe-eight.vercel.app/" target="_blank" rel="noopener">访问 ↗<span>virtual-universe-eight.vercel.app</span></a>
-          </article>
-          <article class="card rv" id="no-11">
-            <img src="works/virtual-house.webp" width="960" height="600" alt="参数化三维样板间" loading="lazy" decoding="async" />
-            <p class="no">No. 11</p>
-            <h3>虚拟看房 · 样板间漫游</h3>
-            <p class="en">Virtual Showroom</p>
-            <p class="desc">户型、材质、家具、灯光与天气实时可调；验证同一套三维能力从工业场景向日常场景的迁移。</p>
-            <a class="go" href="https://virtual-reality-mocha.vercel.app/" target="_blank" rel="noopener">访问 ↗<span>virtual-reality-mocha.vercel.app</span></a>
-          </article>
-          <article class="card rv" id="no-12">
-            <img src="works/hackathon.webp" width="960" height="600" alt="首届 AI 黑客松大赛作品展台" loading="lazy" decoding="async" />
-            <p class="no">No. 12</p>
-            <h3>首届 AI 黑客松大赛作品展台</h3>
-            <p class="en">AI Hackathon Gallery</p>
-            <p class="desc">浙江工商大学信电学院 × 萨塞克斯人工智能学院首届 AI 黑客松官方展台：18 件作品、34 名参赛者、5 条赛道。</p>
-            <a class="go" href="https://zjsu-ai-hackathon.vercel.app/" target="_blank" rel="noopener">访问 ↗<span>zjsu-ai-hackathon.vercel.app</span></a>
-          </article>
-          <article class="card card--empty rv" id="no-13">
-            <div class="card__void" aria-hidden="true"><span>?</span></div>
-            <p class="no">No. 13</p>
-            <h3>待入藏</h3>
-            <p class="en">Awaiting Accession</p>
-            <p class="desc">生命科学方向的下一件标本，正在杭州医学研究所采集。完成后在这里编目、上线。</p>
-          </article>
-        </div>
+        </section>
       </div>
     </section>
 
-    <!-- ================================================= IV 履历 -->
+    <!-- ================================================= III 履历 -->
     <section class="ch" id="curriculum">
       <header class="ch__margin">
-        <span class="ch__no">IV</span>
+        <span class="ch__no">III</span>
         <h2 class="ch__title">履历<span>Curriculum</span></h2>
       </header>
       <div class="ch__body">
+        <p class="keynote rv">赭色标出的是重点条目。</p>
+
         <h3 class="sub rv">教育<span>Education</span></h3>
         <ul class="entries rv">
-          <li><span class="when">在读</span><div><b>浙江工商大学</b> · 信电人工智能学院 · 硕士研究生<small>方向：AI 赋能与智能体开发</small></div></li>
+          <li><span class="when">在读</span><div><b>浙江工商大学</b> · 信电人工智能学院 · 硕士研究生<small>方向：AI 赋能与智能体（Agent）开发</small></div></li>
           <li><span class="when">本科</span><div><b>软件工程</b><small>基础编程与大数据 · Web 前后端 · Java</small></div></li>
         </ul>
 
-        <h3 class="sub rv">研究与项目<span>Positions &amp; Projects</span></h3>
+        <h3 class="sub rv">合作与校内<span>Collaboration &amp; Campus</span></h3>
         <ul class="entries rv">
-          <li><span class="when">现在</span><div><b>杭州医学研究所</b> · 智能体方向研究</div></li>
-          <li><span class="when">校内</span><div><b>课程智能体矩阵</b> · 与诸葛斌导师<small>把业务流程交给智能体承载：会议室预约、智慧就业、图书馆管理、象棋指导</small></div></li>
-          <li><span class="when">校内</span><div><b>「未来课堂」智能体</b> · 开发者</div></li>
-          <li><span class="when">校内</span><div><b>研究生院督导管理系统</b> · 开发者</div></li>
-          <li><span class="when">校内</span><div><b>信电智慧学院平台</b> · 开发贡献者</div></li>
+          <li class="is-key"><span class="when">现在</span><div><b>中国科学院杭州医学研究所</b> · 与未来导师合作<small>AI 病历智能体 · 住院病历书写工作台（<a href="#no-01">No.01</a>）</small></div></li>
+          <li class="is-key"><span class="when">校内</span><div><b>研究生院督导管理系统</b> · 开发者<small>为浙江工商大学研究生院开发的教学督导管理系统（<a href="#no-03">No.03</a>）</small></div></li>
+          <li><span class="when">校内</span><div><b>「未来课堂」智能体</b> · 开发者<small>为浙江工商大学打造面向未来课堂的 AI 教学智能体</small></div></li>
+          <li><span class="when">校内</span><div><b>信电智慧学院平台</b> · 开发贡献者<small>参与平台的开发与建设</small></div></li>
+          <li id="campus-agents"><span class="when">校内</span><div><b>「小龙虾」课程智能体矩阵</b> · 与诸葛斌导师<small>把「小龙虾」接入课程探索，沉淀为一批垂直 Skill Agent：会议室预约（<a href="#no-05">No.05</a>）、智慧就业、图书馆管理、象棋指导</small></div></li>
         </ul>
 
-        <h3 class="sub rv">教学<span>Teaching</span></h3>
+        <h3 class="sub rv">讲台<span>Teaching &amp; Training</span></h3>
+        <p class="sub__note rv">从 7 岁的孩子，到企业 HR。</p>
         <ul class="entries rv">
-          <li><span class="when">2026.04–09</span><div><b>少儿 AI 课程</b> · 良渚<small>面向 7–13 岁：AI 游戏、AI 编程、AI 建模与 3D 打印</small></div></li>
-          <li><span class="when">2026.05–06</span><div><b>研究生 AI 助教</b> · 浙江工商大学</div></li>
-          <li><span class="when">2026.04</span><div><b>HR 智能体搭建培训</b> · 浙江医药股份有限公司</div></li>
-          <li><span class="when">2026.03</span><div><b>AI 智能体应用培训</b> · 浙江省青年创业协会</div></li>
+          <li><span class="when">2026.03.12</span><div><b>浙江工商大学</b> ·「人工智能学院教你养龙虾」小龙虾课程 · 助教</div></li>
+          <li><span class="when">2026.03.22</span><div><b>浙江省青年创业协会</b> ·「养龙虾」AI 培训 · 技术指导</div></li>
+          <li class="is-key" id="teach-liangzhu"><span class="when">2026.04–09</span><div><b>良渚 · 7–13 岁少儿 AI 课</b><small>AI 游戏 · AI 编程 · AI 建模 · 3D 打印；教具见 <a href="#no-06">No.06</a> 太阳系漫游</small></div></li>
+          <li class="is-key"><span class="when">2026.04.27</span><div><b>浙江医药股份有限公司</b> · HR AI Agent 智能体搭建培训<small>企业培训</small></div></li>
+          <li><span class="when">2026.05.15–06.15</span><div><b>浙江工商大学</b> · 研究生 AI 助教</div></li>
         </ul>
 
         <h3 class="sub rv">一条人文线索<span>A Humanities Thread</span></h3>
@@ -353,36 +401,100 @@
       </div>
     </section>
 
-    <!-- ================================================= V 记录 -->
+    <!-- ================================================= IV 记录 -->
     <section class="ch" id="records">
       <header class="ch__margin">
-        <span class="ch__no">V</span>
+        <span class="ch__no">IV</span>
         <h2 class="ch__title">记录<span>Records</span></h2>
       </header>
       <div class="ch__body">
-        <h3 class="sub rv">荣誉<span>Honors</span></h3>
-        <ul class="entries entries--tight rv">
-          <li><span class="when">2026.08</span><div><b>三等奖</b>（指导团队）· 杭州 AGENT BUILDER HACKATHON</div></li>
-          <li><span class="when">2026.07</span><div><b>微光共振奖</b>（指导团队）· 深圳微光青少年黑客松<small>67 支团队中 10 个奖项之一</small></div></li>
-          <li><span class="when">2026.05</span><div><b>银奖</b> · 南京 Flux 南客松 S2「Life's Short, Play More」赛道</div></li>
-          <li><span class="when">2026.03</span><div><b>一等奖</b> · GDPS Astron 产业智变黑客松</div></li>
-          <li><span class="when">2026.03</span><div><b>二等奖</b> · 商汤 SenseAudio &amp; AudioClaw 多场景 Skills 创新赛</div></li>
-          <li><span class="when">2026.03</span><div><b>最佳人气奖</b> · 上海徐汇 Agent 进化酒馆黑客松</div></li>
-          <li><span class="when">2026.01</span><div><b>最佳技术奖</b> · 百度千帆 Agent 训练营</div></li>
-          <li><span class="when">2026.01</span><div><b>一等奖</b> · 浙江工商大学信电学院 · 人工智能学院 AI 应用创新大赛</div></li>
-        </ul>
+        <p class="lede rv">从第一次报名，到被请上台当评委、带队做技术指导。</p>
+        <p class="tally rv"><span><b>11</b>个月</span><span><b>29</b>场 AI 赛事与活动</span><span><b>9</b>种角色</span><span><b>8</b>次获奖</span><span class="tally__span">2025.11 – 2026.10</span></p>
 
-        <h3 class="sub rv">服务<span>Service</span></h3>
-        <ul class="entries entries--tight rv">
-          <li><span class="when">2026.08</span><div><b>主办方 · 落地执行</b> · 上海松江「星火计划」OPC 创业挑战赛</div></li>
-          <li><span class="when">2026.08</span><div><b>评委</b> · MoonStone 黑客松</div></li>
-          <li><span class="when">2026.07</span><div><b>指引者 / 评委</b> · 杭州 AdventureX 2026</div></li>
-          <li><span class="when">2026.07</span><div><b>外场负责人</b> · 上海首场 AI 生命领养市集</div></li>
-          <li><span class="when">2026.03</span><div><b>协办方</b> · 中国高校联盟 AI Hackathon Tour（浙江大学站 · 西安交通大学站）</div></li>
-          <li><span class="when">2026.02</span><div><b>主办方负责人</b> · 全国 10 城联动汤泉黑客松 · 太原站</div></li>
-        </ul>
+        <ol class="chain rv" aria-label="走过的九种角色">
+          <li>参赛者</li><li>志愿者</li><li>工作人员</li><li>协办方</li><li class="is-lead">主办方负责人</li><li class="is-lead">外场负责人</li><li class="is-lead">线下统筹</li><li class="is-lead">带队教练</li><li class="is-lead">评委</li>
+        </ol>
+        <p class="legend rv"><span class="legend__award"><i class="seal seal--xs" aria-hidden="true">奖</i>获奖</span><span class="legend__lead">组织 · 指导 · 评委</span><span class="legend__plain">参赛 · 志愿 · 协办</span></p>
 
-        <p class="tally rv"><span><b>25</b>场 AI 赛事与活动</span><span><b>8</b>种角色</span><span><b>8</b>项奖项</span><span class="tally__span">2025.11 – 2026.08</span></p>
+        <h3 class="sub year rv">2025</h3>
+        <ol class="events rv">
+          <li class="ev"><time>11.22</time><div><b>魔搭社区开发者嘉年华 · 支付宝 MCP 开发黑客松</b><small>第一次参加黑客松——一切的起点</small></div><span class="ev__role">参赛者</span></li>
+          <li class="ev"><time>11.30</time><div><b>Way to AGI · 上海站</b><small>全球 30+ 城市联动，与泰国清迈连线</small></div><span class="ev__role">参赛者</span></li>
+        </ol>
+
+        <h3 class="sub year rv">2026</h3>
+        <ol class="events rv">
+          <li class="ev ev--award"><time>01.08</time><div><b>浙江工商大学信电学院 · 人工智能学院 AI 应用创新大赛</b></div><span class="ev__role"><i class="seal seal--xs" aria-hidden="true">奖</i>一等奖</span></li>
+          <li class="ev"><time>01.16–18</time><div><b>环球黑客松 · 杭州站</b></div><span class="ev__role">志愿者 + 参赛者</span></li>
+          <li class="ev ev--award"><time>01.22</time><div><b>百度千帆 Agent 训练营</b></div><span class="ev__role"><i class="seal seal--xs" aria-hidden="true">奖</i>最佳技术奖</span></li>
+          <li class="ev"><time>01.23–25</time><div><b>上海黑客松 · Less is More</b></div><span class="ev__role">志愿者 + 参赛者</span></li>
+          <li class="ev"><time>01.31–02.02</time><div><b>南京模法学院 S2 赛季 ·「以赛促产」黑客松</b></div><span class="ev__role">志愿者</span></li>
+          <li class="ev ev--lead"><time>02.07–08</time><div><b>全国 10 城联动汤泉黑客松 · 太原站</b><small>第一次从志愿者转到管理者的视角</small></div><span class="ev__role">主办方负责人</span></li>
+          <li class="ev"><time>03.07–08</time><div><b>中国高校联盟 AI Hackathon Tour · 浙大线下复赛</b><small>高校联赛物资准备与现场协办</small></div><span class="ev__role">协办方</span></li>
+          <li class="ev"><time>03.14–15</time><div><b>中国高校联盟 AI Hackathon Tour · 西安交通大学站复赛</b></div><span class="ev__role">协办方</span></li>
+          <li class="ev"><time>03.27–29</time><div><b>GDPS 上海全球开发者先锋大会</b></div><span class="ev__role">志愿服务</span></li>
+          <li class="ev ev--award"><time>03.28</time><div><b>GDPS Astron 产业智变黑客松</b></div><span class="ev__role"><i class="seal seal--xs" aria-hidden="true">奖</i>一等奖</span></li>
+          <li class="ev ev--award"><time>03.29</time><div><b>商汤龙虾节 · SenseAudio &amp; AudioClaw 多场景 Skills 创新赛</b></div><span class="ev__role"><i class="seal seal--xs" aria-hidden="true">奖</i>二等奖</span></li>
+          <li class="ev ev--award"><time>03.29</time><div><b>上海徐汇 · Agent 进化酒馆黑客松</b></div><span class="ev__role"><i class="seal seal--xs" aria-hidden="true">奖</i>最佳人气奖</span></li>
+          <li class="ev"><time>04.09</time><div><b>小红书黑客松巅峰赛</b></div><span class="ev__role">志愿工作人员 + 参赛者</span></li>
+          <li class="ev"><time>04.23</time><div><b>春潮 Spring · 深圳 OpenClaw 黑客松</b></div><span class="ev__role">参赛者</span></li>
+          <li class="ev ev--award"><time>05.01</time><div><b>南京 Flux 南客松 S2 ·「Life's Short, Play More」赛道</b></div><span class="ev__role"><i class="seal seal--xs" aria-hidden="true">奖</i>银奖</span></li>
+          <li class="ev"><time>05.31</time><div><b>上海外滩 FTC · 繁星计划 FunSkills</b><small>初赛 + 决赛全程</small></div><span class="ev__role">工作人员</span></li>
+          <li class="ev" id="ev-0612"><time>06.12</time><div><b>浙江工商大学信电学院 · 人工智能学院首届 AI 黑客松大赛</b><small>官方作品展台见 <a href="#no-04">No.04</a></small></div><span class="ev__role">宣传页落地设计</span></li>
+          <li class="ev"><time>06.23–24</time><div><b>亚马逊云科技 2026 中国峰会</b></div><span class="ev__role">志愿者</span></li>
+          <li class="ev ev--lead"><time>07.04</time><div><b>上海首场 AI 生命领养市集</b></div><span class="ev__role">外场负责人</span></li>
+          <li class="ev ev--award"><time>07.09–12</time><div><b>深圳微光青少年黑客松</b><small>技术助教 / 带队教练：指导孩子团队获「微光共振奖」，67 支团队中的前 10</small></div><span class="ev__role"><i class="seal seal--xs" aria-hidden="true">奖</i>微光共振奖（带队）</span></li>
+          <li class="ev ev--lead"><time>07.22–26</time><div><b>杭州 AdventureX 2026 · 第一章：集结</b><small>中国规模最大的黑客松 · 随原子公社参展</small></div><span class="ev__role">指引者 + 展商</span></li>
+          <li class="ev ev--lead"><time>08.01–03</time><div><b>北京 MoonStone 初中生黑客松</b><small>由四位初中生主办；游园会 + 路演评委，全程陪跑选手</small></div><span class="ev__role">驻场嘉宾 + 评委</span></li>
+          <li class="ev ev--award"><time>08.16</time><div><b>杭州 AGENT BUILDER HACKATHON</b><small>技术指导：带队 4 位初中生获奖</small></div><span class="ev__role"><i class="seal seal--xs" aria-hidden="true">奖</i>三等奖（带队）</span></li>
+          <li class="ev ev--lead"><time>08.19–25</time><div><b>上海松江 2026「星火计划」OPC 创业挑战赛</b><small>主办方活动落地执行</small></div><span class="ev__role">线下统筹</span></li>
+          <li class="ev" id="ev-0921"><time>09.21–24</time><div><b>南京影石 Bold Maker 智能影像 2026 挑战赛</b><small>参赛作品：开图 Unfold（<a href="#no-12">No.12</a>）</small></div><span class="ev__role">参赛者</span></li>
+          <li class="ev ev--lead"><time>10.01–04</time><div><b>杭州学军中学 · 回响 48H 青年创造营</b><small>小学生队技术指导</small></div><span class="ev__role">技术指导</span></li>
+          <li class="ev"><time>10.31</time><div><b>Google DevFest 2026 · 杭州站</b></div><span class="ev__role">技术志愿者</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================================================= V 方向 -->
+    <section class="ch" id="directions">
+      <header class="ch__margin">
+        <span class="ch__no">V</span>
+        <h2 class="ch__title">方向<span>Directions</span></h2>
+      </header>
+      <div class="ch__body ch__body--wide">
+        <p class="lede rv">两条链，由同一组方法相连。</p>
+        <p class="ch__intro rv">长远来看，我想把这些方法带向两处：一处是<em class="t-life">生命科学</em>，让智能体从病历书写走进科研流程本身；一处是<em class="t-arts">人文与艺术</em>，用 AI 重新进入记忆、空间与叙事。</p>
+
+        <div class="helix">
+          <div class="strand strand--life rv">
+            <h3><i class="sw sw--green"></i>生命科学<span>Life Science</span></h3>
+            <p class="strand__status">正在展开</p>
+            <ol>
+              <li><b>面向临床与生物医学研究的智能体</b><span>Agents for clinical &amp; biomedical research</span><small><a href="#no-01">No.01</a> 病历书写工作台 · <a href="#no-02">No.02</a> DrCopilot · 与中科院杭州医学所未来导师合作</small></li>
+              <li><b>科研流程中的多智能体协作</b><span>Multi-agent lab workflows</span><small>方法来自 <a href="#no-07">No.07</a> 智港的协商—审批机制</small></li>
+              <li><b>可溯源的文献与知识检索</b><span>Traceable literature retrieval</span><small>方法来自 <a href="#no-14">No.14</a> 小票机的来源溯源</small></li>
+              <li><b>对照与可复现的评估</b><span>Controlled, reproducible evaluation</span><small>方法来自 <a href="#no-08">No.08</a> 天府 TWIN 的 A/B 影子仿真</small></li>
+            </ol>
+          </div>
+
+          <figure class="helix__fig rv" id="helix"><!--helix:start--><svg class="helix__svg" viewBox="0 0 260 660" aria-hidden="true"><path class="rung" d="M177.8,34L82.2,34"/><path class="rung" d="M201.5,50L58.5,50"/><path class="rung" d="M201.5,98L58.5,98"/><path class="rung" d="M177.8,114L82.2,114"/><path class="rung" d="M82.2,162L177.8,162"/><path class="rung" d="M58.5,178L201.5,178"/><path class="rung" d="M58.5,226L201.5,226"/><path class="rung" d="M82.2,242L177.8,242"/><path class="rung" d="M177.8,290L82.2,290"/><path class="rung" d="M201.5,306L58.5,306"/><path class="rung" d="M201.5,354L58.5,354"/><path class="rung" d="M177.8,370L82.2,370"/><path class="rung" d="M82.2,418L177.8,418"/><path class="rung" d="M58.5,434L201.5,434"/><path class="rung" d="M58.5,482L201.5,482"/><path class="rung" d="M82.2,498L177.8,498"/><path class="rung" d="M177.8,546L82.2,546"/><path class="rung" d="M201.5,562L58.5,562"/><path class="rung" d="M201.5,610L58.5,610"/><path class="rung" d="M177.8,626L82.2,626"/><path class="rung rung--main" d="M216,74L44,74"/><circle class="rung-dot" cx="216" cy="74" r="3.4"/><circle class="rung-dot" cx="44" cy="74" r="3.4"/><path class="rung rung--main" d="M44,202L216,202"/><circle class="rung-dot" cx="44" cy="202" r="3.4"/><circle class="rung-dot" cx="216" cy="202" r="3.4"/><path class="rung rung--main" d="M216,330L44,330"/><circle class="rung-dot" cx="216" cy="330" r="3.4"/><circle class="rung-dot" cx="44" cy="330" r="3.4"/><path class="rung rung--main" d="M44,458L216,458"/><circle class="rung-dot" cx="44" cy="458" r="3.4"/><circle class="rung-dot" cx="216" cy="458" r="3.4"/><path class="rung rung--main" d="M216,586L44,586"/><circle class="rung-dot" cx="216" cy="586" r="3.4"/><circle class="rung-dot" cx="44" cy="586" r="3.4"/><path class="hx hx--arts is-back" style="--d:0.00s" pathLength="1" d="M130,10L121.6,14L113.2,18L105,22L97.1,26L89.5,30L82.2,34L75.4,38L69.2,42L63.5,46L58.5,50L54.2,54L50.5,58L47.7,62L45.7,66L44.4,70L44,74L44.4,78L45.7,82L47.7,86L50.5,90L54.2,94L58.5,98L63.5,102L69.2,106L75.4,110L82.2,114L89.5,118L97.1,122L105,126L113.2,130L121.6,134L130,138"/><path class="hx hx--life is-back" style="--d:0.18s" pathLength="1" d="M130,138L121.6,142L113.2,146L105,150L97.1,154L89.5,158L82.2,162L75.4,166L69.2,170L63.5,174L58.5,178L54.2,182L50.5,186L47.7,190L45.7,194L44.4,198L44,202L44.4,206L45.7,210L47.7,214L50.5,218L54.2,222L58.5,226L63.5,230L69.2,234L75.4,238L82.2,242L89.5,246L97.1,250L105,254L113.2,258L121.6,262L130,266"/><path class="hx hx--arts is-back" style="--d:0.36s" pathLength="1" d="M130,266L121.6,270L113.2,274L105,278L97.1,282L89.5,286L82.2,290L75.4,294L69.2,298L63.5,302L58.5,306L54.2,310L50.5,314L47.7,318L45.7,322L44.4,326L44,330L44.4,334L45.7,338L47.7,342L50.5,346L54.2,350L58.5,354L63.5,358L69.2,362L75.4,366L82.2,370L89.5,374L97.1,378L105,382L113.2,386L121.6,390L130,394"/><path class="hx hx--life is-back" style="--d:0.54s" pathLength="1" d="M130,394L121.6,398L113.2,402L105,406L97.1,410L89.5,414L82.2,418L75.4,422L69.2,426L63.5,430L58.5,434L54.2,438L50.5,442L47.7,446L45.7,450L44.4,454L44,458L44.4,462L45.7,466L47.7,470L50.5,474L54.2,478L58.5,482L63.5,486L69.2,490L75.4,494L82.2,498L89.5,502L97.1,506L105,510L113.2,514L121.6,518L130,522"/><path class="hx hx--arts is-back" style="--d:0.72s" pathLength="1" d="M130,522L121.6,526L113.2,530L105,534L97.1,538L89.5,542L82.2,546L75.4,550L69.2,554L63.5,558L58.5,562L54.2,566L50.5,570L47.7,574L45.7,578L44.4,582L44,586L44.4,590L45.7,594L47.7,598L50.5,602L54.2,606L58.5,610L63.5,614L69.2,618L75.4,622L82.2,626L89.5,630L97.1,634L105,638L113.2,642L121.6,646L130,650"/><path class="halo" d="M130,10L138.4,14L146.8,18L155,22L162.9,26L170.5,30L177.8,34L184.6,38L190.8,42L196.5,46L201.5,50L205.8,54L209.5,58L212.3,62L214.3,66L215.6,70L216,74L215.6,78L214.3,82L212.3,86L209.5,90L205.8,94L201.5,98L196.5,102L190.8,106L184.6,110L177.8,114L170.5,118L162.9,122L155,126L146.8,130L138.4,134L130,138"/><path class="hx hx--life" style="--d:0.00s" pathLength="1" d="M130,10L138.4,14L146.8,18L155,22L162.9,26L170.5,30L177.8,34L184.6,38L190.8,42L196.5,46L201.5,50L205.8,54L209.5,58L212.3,62L214.3,66L215.6,70L216,74L215.6,78L214.3,82L212.3,86L209.5,90L205.8,94L201.5,98L196.5,102L190.8,106L184.6,110L177.8,114L170.5,118L162.9,122L155,126L146.8,130L138.4,134L130,138"/><path class="halo" d="M130,138L138.4,142L146.8,146L155,150L162.9,154L170.5,158L177.8,162L184.6,166L190.8,170L196.5,174L201.5,178L205.8,182L209.5,186L212.3,190L214.3,194L215.6,198L216,202L215.6,206L214.3,210L212.3,214L209.5,218L205.8,222L201.5,226L196.5,230L190.8,234L184.6,238L177.8,242L170.5,246L162.9,250L155,254L146.8,258L138.4,262L130,266"/><path class="hx hx--arts" style="--d:0.18s" pathLength="1" d="M130,138L138.4,142L146.8,146L155,150L162.9,154L170.5,158L177.8,162L184.6,166L190.8,170L196.5,174L201.5,178L205.8,182L209.5,186L212.3,190L214.3,194L215.6,198L216,202L215.6,206L214.3,210L212.3,214L209.5,218L205.8,222L201.5,226L196.5,230L190.8,234L184.6,238L177.8,242L170.5,246L162.9,250L155,254L146.8,258L138.4,262L130,266"/><path class="halo" d="M130,266L138.4,270L146.8,274L155,278L162.9,282L170.5,286L177.8,290L184.6,294L190.8,298L196.5,302L201.5,306L205.8,310L209.5,314L212.3,318L214.3,322L215.6,326L216,330L215.6,334L214.3,338L212.3,342L209.5,346L205.8,350L201.5,354L196.5,358L190.8,362L184.6,366L177.8,370L170.5,374L162.9,378L155,382L146.8,386L138.4,390L130,394"/><path class="hx hx--life" style="--d:0.36s" pathLength="1" d="M130,266L138.4,270L146.8,274L155,278L162.9,282L170.5,286L177.8,290L184.6,294L190.8,298L196.5,302L201.5,306L205.8,310L209.5,314L212.3,318L214.3,322L215.6,326L216,330L215.6,334L214.3,338L212.3,342L209.5,346L205.8,350L201.5,354L196.5,358L190.8,362L184.6,366L177.8,370L170.5,374L162.9,378L155,382L146.8,386L138.4,390L130,394"/><path class="halo" d="M130,394L138.4,398L146.8,402L155,406L162.9,410L170.5,414L177.8,418L184.6,422L190.8,426L196.5,430L201.5,434L205.8,438L209.5,442L212.3,446L214.3,450L215.6,454L216,458L215.6,462L214.3,466L212.3,470L209.5,474L205.8,478L201.5,482L196.5,486L190.8,490L184.6,494L177.8,498L170.5,502L162.9,506L155,510L146.8,514L138.4,518L130,522"/><path class="hx hx--arts" style="--d:0.54s" pathLength="1" d="M130,394L138.4,398L146.8,402L155,406L162.9,410L170.5,414L177.8,418L184.6,422L190.8,426L196.5,430L201.5,434L205.8,438L209.5,442L212.3,446L214.3,450L215.6,454L216,458L215.6,462L214.3,466L212.3,470L209.5,474L205.8,478L201.5,482L196.5,486L190.8,490L184.6,494L177.8,498L170.5,502L162.9,506L155,510L146.8,514L138.4,518L130,522"/><path class="halo" d="M130,522L138.4,526L146.8,530L155,534L162.9,538L170.5,542L177.8,546L184.6,550L190.8,554L196.5,558L201.5,562L205.8,566L209.5,570L212.3,574L214.3,578L215.6,582L216,586L215.6,590L214.3,594L212.3,598L209.5,602L205.8,606L201.5,610L196.5,614L190.8,618L184.6,622L177.8,626L170.5,630L162.9,634L155,638L146.8,642L138.4,646L130,650"/><path class="hx hx--life" style="--d:0.72s" pathLength="1" d="M130,522L138.4,526L146.8,530L155,534L162.9,538L170.5,542L177.8,546L184.6,550L190.8,554L196.5,558L201.5,562L205.8,566L209.5,570L212.3,574L214.3,578L215.6,582L216,586L215.6,590L214.3,594L212.3,598L209.5,602L205.8,606L201.5,610L196.5,614L190.8,618L184.6,622L177.8,626L170.5,630L162.9,634L155,638L146.8,642L138.4,646L130,650"/><text class="rung-label" x="130" y="77.8">智能体 Agents</text><text class="rung-label" x="130" y="205.8">多智能体 Multi-agent</text><text class="rung-label" x="130" y="333.8">数字孪生 Digital Twins</text><text class="rung-label" x="130" y="461.8">检索增强 RAG</text><text class="rung-label" x="130" y="589.8">生成式模型 GenAI</text></svg><!--helix:end--></figure>
+
+          <figure class="helix__band rv" aria-hidden="true"><!--helixband:start--><svg class="helix__svg" viewBox="0 0 660 120" aria-hidden="true"><path class="rung" d="M34,84.4L34,35.6"/><path class="rung" d="M50,96.6L50,23.4"/><path class="rung" d="M98,96.6L98,23.4"/><path class="rung" d="M114,84.4L114,35.6"/><path class="rung" d="M162,35.6L162,84.4"/><path class="rung" d="M178,23.4L178,96.6"/><path class="rung" d="M226,23.4L226,96.6"/><path class="rung" d="M242,35.6L242,84.4"/><path class="rung" d="M290,84.4L290,35.6"/><path class="rung" d="M306,96.6L306,23.4"/><path class="rung" d="M354,96.6L354,23.4"/><path class="rung" d="M370,84.4L370,35.6"/><path class="rung" d="M418,35.6L418,84.4"/><path class="rung" d="M434,23.4L434,96.6"/><path class="rung" d="M482,23.4L482,96.6"/><path class="rung" d="M498,35.6L498,84.4"/><path class="rung" d="M546,84.4L546,35.6"/><path class="rung" d="M562,96.6L562,23.4"/><path class="rung" d="M610,96.6L610,23.4"/><path class="rung" d="M626,84.4L626,35.6"/><path class="rung rung--main" d="M74,104L74,16"/><circle class="rung-dot" cx="74" cy="104" r="3.4"/><circle class="rung-dot" cx="74" cy="16" r="3.4"/><path class="rung rung--main" d="M202,16L202,104"/><circle class="rung-dot" cx="202" cy="16" r="3.4"/><circle class="rung-dot" cx="202" cy="104" r="3.4"/><path class="rung rung--main" d="M330,104L330,16"/><circle class="rung-dot" cx="330" cy="104" r="3.4"/><circle class="rung-dot" cx="330" cy="16" r="3.4"/><path class="rung rung--main" d="M458,16L458,104"/><circle class="rung-dot" cx="458" cy="16" r="3.4"/><circle class="rung-dot" cx="458" cy="104" r="3.4"/><path class="rung rung--main" d="M586,104L586,16"/><circle class="rung-dot" cx="586" cy="104" r="3.4"/><circle class="rung-dot" cx="586" cy="16" r="3.4"/><path class="hx hx--arts is-back" style="--d:0.00s" pathLength="1" d="M10,60L14,55.7L18,51.4L22,47.2L26,43.2L30,39.3L34,35.6L38,32.1L42,28.9L46,26L50,23.4L54,21.2L58,19.3L62,17.9L66,16.8L70,16.2L74,16L78,16.2L82,16.8L86,17.9L90,19.3L94,21.2L98,23.4L102,26L106,28.9L110,32.1L114,35.6L118,39.3L122,43.2L126,47.2L130,51.4L134,55.7L138,60"/><path class="hx hx--life is-back" style="--d:0.18s" pathLength="1" d="M138,60L142,55.7L146,51.4L150,47.2L154,43.2L158,39.3L162,35.6L166,32.1L170,28.9L174,26L178,23.4L182,21.2L186,19.3L190,17.9L194,16.8L198,16.2L202,16L206,16.2L210,16.8L214,17.9L218,19.3L222,21.2L226,23.4L230,26L234,28.9L238,32.1L242,35.6L246,39.3L250,43.2L254,47.2L258,51.4L262,55.7L266,60"/><path class="hx hx--arts is-back" style="--d:0.36s" pathLength="1" d="M266,60L270,55.7L274,51.4L278,47.2L282,43.2L286,39.3L290,35.6L294,32.1L298,28.9L302,26L306,23.4L310,21.2L314,19.3L318,17.9L322,16.8L326,16.2L330,16L334,16.2L338,16.8L342,17.9L346,19.3L350,21.2L354,23.4L358,26L362,28.9L366,32.1L370,35.6L374,39.3L378,43.2L382,47.2L386,51.4L390,55.7L394,60"/><path class="hx hx--life is-back" style="--d:0.54s" pathLength="1" d="M394,60L398,55.7L402,51.4L406,47.2L410,43.2L414,39.3L418,35.6L422,32.1L426,28.9L430,26L434,23.4L438,21.2L442,19.3L446,17.9L450,16.8L454,16.2L458,16L462,16.2L466,16.8L470,17.9L474,19.3L478,21.2L482,23.4L486,26L490,28.9L494,32.1L498,35.6L502,39.3L506,43.2L510,47.2L514,51.4L518,55.7L522,60"/><path class="hx hx--arts is-back" style="--d:0.72s" pathLength="1" d="M522,60L526,55.7L530,51.4L534,47.2L538,43.2L542,39.3L546,35.6L550,32.1L554,28.9L558,26L562,23.4L566,21.2L570,19.3L574,17.9L578,16.8L582,16.2L586,16L590,16.2L594,16.8L598,17.9L602,19.3L606,21.2L610,23.4L614,26L618,28.9L622,32.1L626,35.6L630,39.3L634,43.2L638,47.2L642,51.4L646,55.7L650,60"/><path class="halo" d="M10,60L14,64.3L18,68.6L22,72.8L26,76.8L30,80.7L34,84.4L38,87.9L42,91.1L46,94L50,96.6L54,98.8L58,100.7L62,102.1L66,103.2L70,103.8L74,104L78,103.8L82,103.2L86,102.1L90,100.7L94,98.8L98,96.6L102,94L106,91.1L110,87.9L114,84.4L118,80.7L122,76.8L126,72.8L130,68.6L134,64.3L138,60"/><path class="hx hx--life" style="--d:0.00s" pathLength="1" d="M10,60L14,64.3L18,68.6L22,72.8L26,76.8L30,80.7L34,84.4L38,87.9L42,91.1L46,94L50,96.6L54,98.8L58,100.7L62,102.1L66,103.2L70,103.8L74,104L78,103.8L82,103.2L86,102.1L90,100.7L94,98.8L98,96.6L102,94L106,91.1L110,87.9L114,84.4L118,80.7L122,76.8L126,72.8L130,68.6L134,64.3L138,60"/><path class="halo" d="M138,60L142,64.3L146,68.6L150,72.8L154,76.8L158,80.7L162,84.4L166,87.9L170,91.1L174,94L178,96.6L182,98.8L186,100.7L190,102.1L194,103.2L198,103.8L202,104L206,103.8L210,103.2L214,102.1L218,100.7L222,98.8L226,96.6L230,94L234,91.1L238,87.9L242,84.4L246,80.7L250,76.8L254,72.8L258,68.6L262,64.3L266,60"/><path class="hx hx--arts" style="--d:0.18s" pathLength="1" d="M138,60L142,64.3L146,68.6L150,72.8L154,76.8L158,80.7L162,84.4L166,87.9L170,91.1L174,94L178,96.6L182,98.8L186,100.7L190,102.1L194,103.2L198,103.8L202,104L206,103.8L210,103.2L214,102.1L218,100.7L222,98.8L226,96.6L230,94L234,91.1L238,87.9L242,84.4L246,80.7L250,76.8L254,72.8L258,68.6L262,64.3L266,60"/><path class="halo" d="M266,60L270,64.3L274,68.6L278,72.8L282,76.8L286,80.7L290,84.4L294,87.9L298,91.1L302,94L306,96.6L310,98.8L314,100.7L318,102.1L322,103.2L326,103.8L330,104L334,103.8L338,103.2L342,102.1L346,100.7L350,98.8L354,96.6L358,94L362,91.1L366,87.9L370,84.4L374,80.7L378,76.8L382,72.8L386,68.6L390,64.3L394,60"/><path class="hx hx--life" style="--d:0.36s" pathLength="1" d="M266,60L270,64.3L274,68.6L278,72.8L282,76.8L286,80.7L290,84.4L294,87.9L298,91.1L302,94L306,96.6L310,98.8L314,100.7L318,102.1L322,103.2L326,103.8L330,104L334,103.8L338,103.2L342,102.1L346,100.7L350,98.8L354,96.6L358,94L362,91.1L366,87.9L370,84.4L374,80.7L378,76.8L382,72.8L386,68.6L390,64.3L394,60"/><path class="halo" d="M394,60L398,64.3L402,68.6L406,72.8L410,76.8L414,80.7L418,84.4L422,87.9L426,91.1L430,94L434,96.6L438,98.8L442,100.7L446,102.1L450,103.2L454,103.8L458,104L462,103.8L466,103.2L470,102.1L474,100.7L478,98.8L482,96.6L486,94L490,91.1L494,87.9L498,84.4L502,80.7L506,76.8L510,72.8L514,68.6L518,64.3L522,60"/><path class="hx hx--arts" style="--d:0.54s" pathLength="1" d="M394,60L398,64.3L402,68.6L406,72.8L410,76.8L414,80.7L418,84.4L422,87.9L426,91.1L430,94L434,96.6L438,98.8L442,100.7L446,102.1L450,103.2L454,103.8L458,104L462,103.8L466,103.2L470,102.1L474,100.7L478,98.8L482,96.6L486,94L490,91.1L494,87.9L498,84.4L502,80.7L506,76.8L510,72.8L514,68.6L518,64.3L522,60"/><path class="halo" d="M522,60L526,64.3L530,68.6L534,72.8L538,76.8L542,80.7L546,84.4L550,87.9L554,91.1L558,94L562,96.6L566,98.8L570,100.7L574,102.1L578,103.2L582,103.8L586,104L590,103.8L594,103.2L598,102.1L602,100.7L606,98.8L610,96.6L614,94L618,91.1L622,87.9L626,84.4L630,80.7L634,76.8L638,72.8L642,68.6L646,64.3L650,60"/><path class="hx hx--life" style="--d:0.72s" pathLength="1" d="M522,60L526,64.3L530,68.6L534,72.8L538,76.8L542,80.7L546,84.4L550,87.9L554,91.1L558,94L562,96.6L566,98.8L570,100.7L574,102.1L578,103.2L582,103.8L586,104L590,103.8L594,103.2L598,102.1L602,100.7L606,98.8L610,96.6L614,94L618,91.1L622,87.9L626,84.4L630,80.7L634,76.8L638,72.8L642,68.6L646,64.3L650,60"/></svg><!--helixband:end--></figure>
+
+          <div class="strand strand--arts rv">
+            <h3><i class="sw sw--ochre"></i>人文与艺术<span>Humanities &amp; Arts</span></h3>
+            <p class="strand__status">已有作品</p>
+            <ol>
+              <li><b>记忆、时间与叙事</b><span>Memory, time &amp; narrative</span><small><a href="#no-13">No.13</a> 人生时光机</small></li>
+              <li><b>空间、场所与文化</b><span>Space, place &amp; culture</span><small><a href="#no-09">No.09</a> 商大元境 · <a href="#no-12">No.12</a> 开图</small></li>
+              <li><b>科学传播与美育</b><span>Science communication &amp; aesthetics</span><small><a href="#no-06">No.06</a> 太阳系漫游 · 少儿 AI 课程</small></li>
+              <li><b>博物馆与文化遗产</b><span>Museums &amp; cultural heritage</span><small>博物馆志愿服务 · 古建筑博物馆实习</small></li>
+            </ol>
+          </div>
+        </div>
+
+        <p class="methods"><span>相连的方法</span>智能体 · 多智能体 · 数字孪生 · 检索增强 RAG · 生成式模型</p>
+        <p class="figcap"><b>Fig. 2</b>　双链。<i class="sw sw--green"></i>石绿为生命科学，<i class="sw sw--ochre"></i>赭石为人文艺术，横档为连接二者的方法。</p>
       </div>
     </section>
 
@@ -397,9 +509,12 @@
           <p>别人写「我参与过」，<br />我给一个能点开的地址。</p>
           <cite>摘自作者 2026 作品集</cite>
         </blockquote>
+        <p class="invite rv">现有整段空档，每周可投入 5–7 天，合作形式都可以谈。</p>
         <p class="mail rv"><a href="mailto:chenjunyepro@gmail.com">chenjunyepro@gmail.com</a></p>
         <dl class="contact rv">
           <div><dt>微信</dt><dd>com_cjy_util</dd></div>
+          <div><dt>档期</dt><dd>空档期 · 每周 5–7 天 · 校内外兼顾</dd></div>
+          <div><dt>个人站</dt><dd><a href="http://60.205.204.162/cjy/" target="_blank" rel="noopener">60.205.204.162/cjy</a></dd></div>
           <div><dt>所在</dt><dd>杭州 · Hangzhou, CN</dd></div>
         </dl>
       </div>
@@ -411,11 +526,11 @@
     <div class="colophon__in">
       <span class="seal" aria-hidden="true">陈</span>
       <p class="colophon__title">版本记录 · Colophon</p>
-      <p>以系统衬线与无衬线字体排印。Fig. 1 为程序生成的放射虫形态网络，向 Ernst Haeckel《自然的艺术形态》（1904）致意；Fig. 2 为同一程序绘制的双链。图版取自运行中的系统。颜色取自赭石、石绿、朱砂。</p>
-      <p class="colophon__meta">© 2026 陈俊烨 Chen Junye · 最近更新 2026.10 · <a href="#top">回到封面 ↑</a></p>
+      <p>以系统衬线与无衬线字体排印。Fig. 1 为程序生成的放射虫形态网络，向 Ernst Haeckel《自然的艺术形态》（1904）致意；Fig. 2 为同一程序绘制的双链；Film 1 为九十秒自述影像。图版取自运行中的系统。颜色取自赭石、石绿、朱砂；朱砂只用于印章。</p>
+      <p class="colophon__meta">© 2026 陈俊烨 Chen Junye · 最近更新 2026.11 · <a href="#top">回到封面 ↑</a></p>
     </div>
   </footer>
 
-  <script src="main.js?v=2610" defer></script>
+  <script src="main.js?v=2611" defer></script>
 </body>
 </html>

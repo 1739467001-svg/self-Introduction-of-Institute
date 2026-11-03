@@ -271,9 +271,9 @@ def og_png(out):
     d.text((x0, 168 * S), "陈俊烨", font=F(CJK, 104), fill=cream)
     d.text((x0, 300 * S), "CHEN  JUNYE", font=F(LAT, 26), fill=cream + (225,))
     d.line([(x0, 352 * S), (x0 + 120 * S, 352 * S)], fill=cream, width=2 * S)
-    d.text((x0, 384 * S), "以智能体为方法，", font=F(CJK, 34), fill=cream)
-    d.text((x0, 432 * S), "走向生命科学与人文艺术。", font=F(CJK, 34), fill=cream)
-    d.text((x0, 520 * S), "杭州医学研究所 · 浙江工商大学", font=F(CJK, 20), fill=cream + (215,))
+    d.text((x0, 384 * S), "从一段能跑的代码，", font=F(CJK, 34), fill=cream)
+    d.text((x0, 432 * S), "到一个真实在用的系统。", font=F(CJK, 34), fill=cream)
+    d.text((x0, 520 * S), "AI 应用开发者 · 浙江工商大学 · 每周可投入 5–7 天", font=F(CJK, 20), fill=cream + (215,))
 
     img = img.resize((1200, 630), Image.LANCZOS)
     # 256 色抖动量化：渐变不出色带，体积约为真彩的一半

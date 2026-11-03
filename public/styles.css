@@ -7,6 +7,8 @@
      赭石   --ochre      #9C6A1E  4.0:1   仅大字、线条、装饰
      石绿字 --green      #3E6B5C  5.2:1   正文可用
      朱砂   --cinnabar   #B5432B  只用于印章（奶油字 5.0:1）
+   重点标注：赭石字 = 组织 / 指导 / 重点条目；朱砂「奖」印 = 获奖；
+   荧光底 .hl 只换底色，文字仍是墨色。
    封面最亮处 #8C5E1C，奶油字 ≥ 5.1:1。
    只用系统字体：Google Fonts 在中国大陆不稳定，会拖慢首屏。
    ===================================================================== */
@@ -72,6 +74,10 @@ b, strong { color: var(--ink); font-weight: 600; }
   transform: rotate(-3deg);
 }
 .seal--sm { width: 1.85rem; height: 1.85rem; font-size: 1.05rem; }
+.seal--xs {
+  width: 1.2rem; height: 1.2rem; font-size: .7rem; font-style: normal; border-radius: 2px; flex: none;
+  box-shadow: inset 0 0 0 1px var(--cinnabar), inset 0 0 0 1.5px rgba(251, 243, 226, .6);
+}
 
 /* ------------------------------------------------------------------ 顶栏 */
 .bar {
@@ -90,7 +96,7 @@ b, strong { color: var(--ink); font-weight: 600; }
 .bar__nav { display: flex; gap: clamp(.9rem, 2vw, 1.7rem); font-size: .9rem; }
 .bar__nav a { color: inherit; text-decoration: none; white-space: nowrap; padding: .25rem 0; opacity: .82;
   transition: opacity .25s, box-shadow .25s; }
-.bar__nav a b { font-family: var(--serif-en); font-weight: 400; font-size: .72rem; margin-right: .3rem; letter-spacing: .04em; opacity: .75; }
+.bar__nav a b { font-family: var(--serif-en); font-weight: 400; font-size: .72rem; margin-right: .3rem; letter-spacing: .04em; }
 .bar__nav a:hover, .bar__nav a[aria-current] { opacity: 1; box-shadow: inset 0 -1px 0 currentColor; }
 .bar__progress {
   position: absolute; left: 0; bottom: -1px; height: 2px; width: 100%;
@@ -170,6 +176,7 @@ b, strong { color: var(--ink); font-weight: 600; }
 .label > div:not(.label__head) { display: grid; grid-template-columns: 3.3rem 1fr; gap: .6rem; padding: .16rem 0; }
 .label dt { opacity: .72; }
 .label dd { margin: 0; }
+.label .label__key dd { font-weight: 600; }
 
 .cover__cue {
   justify-self: center; display: inline-flex; flex-direction: column; align-items: center; gap: .15rem;
@@ -201,7 +208,6 @@ b, strong { color: var(--ink); font-weight: 600; }
 .t-life, .t-arts { font-style: normal; font-weight: 600; border-bottom: 1px solid currentColor; }
 .t-life { color: var(--green); }
 .t-arts { color: var(--ochre-text); }
-.aside { font-size: .88rem; color: var(--muted); padding-top: 1rem; border-top: 1px solid var(--rule-2); }
 .sw { display: inline-block; width: .62em; height: .62em; border-radius: 50%; margin: 0 .32em 0 .12em; vertical-align: .04em; }
 .sw--ochre { background: var(--ochre); }
 .sw--green { background: var(--green); }
@@ -214,8 +220,41 @@ b, strong { color: var(--ink); font-weight: 600; }
 .sub { display: flex; align-items: baseline; gap: .8rem; margin: 2.8rem 0 .9rem; font-family: var(--serif-cn); font-size: 1.15rem; color: var(--ink); }
 .ch__body > .sub:first-child { margin-top: 0; }
 .sub span { font-family: var(--serif-en); font-weight: 400; font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+.sub__note { margin: -.35rem 0 .9rem !important; font-size: .88rem; color: var(--muted); }
+.keynote { display: flex; align-items: center; gap: .55rem; margin: 0 0 2rem !important; font-size: .84rem; color: var(--muted); }
+.keynote::before { content: ""; width: 3px; height: 1.1em; background: var(--ochre); }
+.hl { font-style: normal; color: var(--ink); background: linear-gradient(transparent 58%, rgba(226, 201, 143, .6) 0); }
+.ch__intro { max-width: 680px; }
 
-/* ------------------------------------------------------------------ II 双链 */
+/* ------------------------------------------------------------------ I 总述 */
+.brief { max-width: 680px; }
+.brief > p { margin: 0 0 1.2rem; }
+.facts {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 2.4rem 0 0;
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+}
+.facts > div { padding: 1rem 1.1rem 1.05rem; border-left: 1px solid var(--rule-2); }
+.facts > div:first-child { border-left: 0; }
+.facts dt { font-size: .8rem; letter-spacing: .06em; color: var(--muted); }
+.facts dd { margin: .25rem 0 .2rem; font-size: .9rem; color: var(--ink); }
+.facts dd b { margin-right: .3rem; font-family: var(--serif-en); font-weight: 400; font-size: 2.4rem; line-height: 1; color: var(--ochre); }
+.facts small { display: block; font-size: .8rem; line-height: 1.5; color: var(--muted); }
+/* 档期是企业最先要看的一格 */
+.facts .facts__key { background: rgba(62, 107, 92, .07); box-shadow: inset 0 2px 0 var(--green); }
+.facts .facts__key dd b { color: var(--green); }
+
+.skills { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem .55rem; }
+.skills li { padding: .1rem .75rem; font-size: .86rem; color: var(--ink-2); border: 1px solid var(--rule); border-radius: 99px; background: rgba(250, 245, 234, .6); }
+.skills .is-key { font-weight: 600; color: var(--ochre-text); border-color: var(--ochre); background: rgba(156, 106, 30, .08); }
+
+.film { margin: 2.8rem 0 0; }
+.film__frame { padding: 10px; background: var(--card); border: 1px solid var(--rule); box-shadow: 0 1px 0 var(--rule-2), 0 22px 44px -30px rgba(60, 38, 10, .55); }
+.film video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #EDE3CC; }
+.film figcaption { margin-top: .6rem; font-size: .84rem; color: var(--muted); }
+.film figcaption b { font-family: var(--serif-en); font-style: italic; color: var(--ink-2); }
+.film figcaption span { display: block; font-family: var(--serif-en); font-style: italic; }
+
+/* ------------------------------------------------------------------ V 方向 · 双链 */
 .helix { display: grid; grid-template-columns: minmax(0, 1fr) minmax(170px, 240px) minmax(0, 1fr); gap: clamp(1rem, 3vw, 2.8rem); align-items: center; }
 .helix__fig { margin: 0; }
 .helix__svg { width: 100%; height: auto; display: block; overflow: visible; }
@@ -260,7 +299,7 @@ b, strong { color: var(--ink); font-weight: 600; }
 }
 .methods span { margin-right: .6rem; }
 
-/* ------------------------------------------------------------------ III 标本 */
+/* ------------------------------------------------------------------ II 标本 */
 .plate {
   display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: clamp(1.6rem, 3.6vw, 3.2rem);
   align-items: center; margin: 0 0 clamp(3.6rem, 7vw, 6rem);
@@ -301,24 +340,54 @@ b, strong { color: var(--ink); font-weight: 600; }
 .card .en { margin: .15rem 0 .55rem !important; font-size: .84rem; }
 .card .desc { margin: 0 0 .7rem !important; font-size: .87rem; line-height: 1.75; }
 .card .go span { display: block; margin: .25rem 0 0; }
-/* 空标本框：留给生命科学方向的第一件作品 */
-.card__void {
-  display: grid; place-items: center; aspect-ratio: 16 / 10; margin-bottom: .9rem;
-  border: 1px dashed var(--ochre); background:
-    repeating-linear-gradient(-45deg, transparent 0 9px, rgba(156, 106, 30, .07) 9px 10px), var(--card);
-}
-.card__void span {
-  display: grid; place-items: center; width: 3.2rem; height: 3.2rem; border-radius: 50%;
-  border: 1px solid var(--green); color: var(--green); font-family: var(--serif-en); font-size: 1.5rem;
-}
-.card--empty h3 { color: var(--green); }
 
-/* ------------------------------------------------------------------ IV / V 条目 */
+/* 分类：甲 合作与在用 → 乙 行业系统 → 丙 创意与原型 */
+.kinds { list-style: none; margin: -1.2rem 0 2.8rem; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem 1.8rem; font-size: .92rem; }
+.kinds a { color: var(--ink-2); text-decoration: none; border-bottom: 1px solid var(--rule); padding-bottom: 2px; }
+.kinds a b { margin-right: .4rem; font-family: var(--serif-cn); color: var(--ochre-text); }
+.kinds a span { margin-left: .4rem; font-size: .8rem; color: var(--muted); }
+.kinds a:hover { color: var(--ink); border-color: currentColor; }
+.kind + .kind { margin-top: clamp(3.6rem, 7vw, 5.6rem); }
+.kind__head {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .15rem 1rem; align-items: baseline;
+  margin: 0 0 clamp(2rem, 4vw, 3rem); padding-top: 1.3rem; border-top: 1px solid var(--ink-2);
+}
+.kind__no { grid-row: span 2; margin: 0; font-family: var(--serif-cn); font-weight: 700; font-size: clamp(2rem, 3.4vw, 2.6rem); line-height: 1; color: var(--ochre); }
+.kind__head h3 { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: .1rem .8rem; font-family: var(--serif-cn); font-size: 1.3rem; color: var(--ink); }
+.kind__head h3 span { font-family: var(--serif-en); font-weight: 400; font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+.kind__note { margin: 0; font-size: .88rem; color: var(--muted); }
+
+.flag {
+  display: inline-block; margin-left: .7rem; padding: 0 .55rem; vertical-align: .08em;
+  font-family: var(--sans); font-size: .7rem; line-height: 1.6; letter-spacing: .06em;
+  color: var(--green); border: 1px solid currentColor; border-radius: 99px;
+}
+/* 作品 ↔ 经历的互见 */
+.rel { margin: -.2rem 0 .85rem !important; font-size: .8rem; line-height: 1.6; color: var(--muted); }
+.rel::before { content: "↔"; margin-right: .4rem; color: var(--ochre); }
+
+/* 库房藏品：在用、但不对外展出的校内系统 */
+.archive {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 1rem 1.6rem; align-items: center;
+  margin: 0 0 clamp(2.6rem, 5vw, 3.6rem); padding: 1.3rem 1.5rem;
+  border: 1px dashed var(--ochre);
+  background: repeating-linear-gradient(-45deg, transparent 0 9px, rgba(156, 106, 30, .06) 9px 10px), var(--card);
+}
+.archive__seal { width: 3.4rem; height: 3.4rem; font-size: 1.9rem; }
+.archive h3 { margin: 0; font-family: var(--serif-cn); font-size: 1.15rem; line-height: 1.45; color: var(--ink); }
+.archive .en { margin: .15rem 0 .5rem !important; font-size: .84rem; }
+.archive .desc { margin: 0 !important; font-size: .9rem; line-height: 1.75; }
+.archive__note { margin: 0; text-align: right; font-size: .8rem; line-height: 1.5; color: var(--muted); }
+.archive__note span { display: block; font-family: var(--serif-en); font-style: italic; }
+
+/* ------------------------------------------------------------------ III / IV 条目 */
 .entries { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
 .entries li { display: grid; grid-template-columns: 7.2rem 1fr; gap: 1rem; padding: .72rem 0; border-bottom: 1px solid var(--rule-2); }
 .entries--tight li { padding: .55rem 0; }
 .when { font-family: var(--serif-en); font-variant-numeric: oldstyle-nums tabular-nums; font-size: .92rem; color: var(--muted); padding-top: .05rem; }
 .entries small { display: block; margin-top: .1rem; font-size: .85rem; color: var(--muted); line-height: 1.6; }
+.entries li.is-key { padding-left: .85rem; box-shadow: inset 3px 0 0 var(--ochre); background: linear-gradient(90deg, rgba(156, 106, 30, .08), transparent 75%); }
+.entries li.is-key b, .entries li.is-key .when { color: var(--ochre-text); }
 
 .thread { list-style: none; margin: .4rem 0 0; padding: 1.4rem 0 0; position: relative; display: grid; grid-template-columns: repeat(5, 1fr); }
 .thread::before { content: ""; position: absolute; top: 1.4rem; left: 10%; right: 10%; height: 1px; background: var(--ochre); }
@@ -333,11 +402,37 @@ b, strong { color: var(--ink); font-weight: 600; }
 .tally { display: flex; flex-wrap: wrap; align-items: baseline; gap: .6rem 2.2rem; margin: 2.2rem 0 0 !important; padding-top: 1.2rem; border-top: 1px solid var(--rule); font-size: .86rem; color: var(--muted); }
 .tally b { margin-right: .35rem; font-family: var(--serif-en); font-weight: 400; font-size: 2.3rem; line-height: 1; color: var(--ochre); }
 .tally__span { margin-left: auto; font-family: var(--serif-en); font-style: italic; }
+#records .tally { margin: 0 0 1.8rem !important; padding: 1.2rem 0 0; }
+
+.chain { list-style: none; margin: 0 0 .9rem; padding: 0; display: flex; flex-wrap: wrap; gap: .35rem 0; font-size: .86rem; }
+.chain li { color: var(--muted); }
+.chain li + li::before { content: "→"; margin: 0 .45rem; color: var(--rule); }
+.chain .is-lead { font-weight: 600; color: var(--ochre-text); }
+.legend { display: flex; flex-wrap: wrap; gap: .4rem 1.5rem; margin: 0 0 2rem !important; font-size: .8rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: .45rem; }
+.legend__lead::before, .legend__plain::before { content: ""; width: 1rem; }
+.legend__lead::before { height: 3px; background: var(--ochre); }
+.legend__plain::before { height: 1px; background: var(--muted); }
+.legend__lead { color: var(--ochre-text); font-weight: 600; }
+
+.sub.year { margin-top: 2rem; font-family: var(--serif-en); font-weight: 400; font-size: 1.05rem; letter-spacing: .12em; color: var(--muted); }
+.events { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+.ev { display: grid; grid-template-columns: 6.4rem minmax(0, 1fr) auto; gap: .15rem 1rem; align-items: baseline; padding: .6rem 0; border-bottom: 1px solid var(--rule-2); }
+.ev time { font-family: var(--serif-en); font-variant-numeric: tabular-nums; font-size: .9rem; color: var(--muted); }
+.ev b { font-weight: 500; color: var(--ink-2); }
+.ev small { display: block; margin-top: .05rem; font-size: .82rem; line-height: 1.6; color: var(--muted); }
+.ev__role { justify-self: end; display: inline-flex; align-items: center; gap: .4rem; font-size: .84rem; text-align: right; color: var(--muted); }
+.ev--lead b, .ev--award b { font-weight: 600; color: var(--ink); }
+.ev--lead .ev__role { font-weight: 600; color: var(--ochre-text); }
+.ev--lead time { color: var(--ochre-text); }
+.ev--award .ev__role { font-weight: 600; color: var(--ink); }
+.ev--award time { font-weight: 600; color: var(--ochre-text); }
 
 /* ------------------------------------------------------------------ VI 通信 */
 .epigraph { margin: 0 0 2.6rem; padding-left: 1.4rem; border-left: 2px solid var(--ochre); }
 .epigraph p { margin: 0; font-family: var(--serif-cn); font-size: clamp(1.3rem, 2.4vw, 1.75rem); line-height: 1.6; color: var(--ink); }
 .epigraph cite { display: block; margin-top: .7rem; font-style: normal; font-size: .8rem; color: var(--muted); }
+.invite { margin: 0 0 .8rem !important; font-family: var(--serif-cn); font-size: 1.08rem; color: var(--ink); }
 .mail { margin: 0 0 1.4rem !important; }
 .mail a {
   font-family: var(--serif-en); font-size: clamp(1.45rem, 4.2vw, 2.6rem); color: var(--ink); text-decoration: none;
@@ -349,6 +444,7 @@ b, strong { color: var(--ink); font-weight: 600; }
 .contact div { display: grid; grid-template-columns: 4rem 1fr; }
 .contact dt { color: var(--muted); }
 .contact dd { margin: 0; color: var(--ink); }
+.contact a { overflow-wrap: anywhere; }
 
 /* ------------------------------------------------------------------ 版本记录 */
 /* 封底：与封面同一块赭石，书页至此合上 */
@@ -422,12 +518,26 @@ b, strong { color: var(--ink); font-weight: 600; }
   .plate__fig figcaption, .plate:nth-of-type(even) .plate__fig figcaption { text-align: left; }
 
   .entries li { grid-template-columns: 1fr; gap: .05rem; }
+
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .facts > div:nth-child(3) { border-left: 0; }
+  .facts > div:nth-child(n+3) { border-top: 1px solid var(--rule-2); }
+  .facts > div { padding: .85rem .8rem .9rem; }
+  .facts dd b { font-size: 2.1rem; }
+
+  .kinds { gap: .5rem 1.2rem; }
+  .archive { grid-template-columns: auto minmax(0, 1fr); padding: 1.1rem 1rem; gap: .8rem 1rem; align-items: start; }
+  .archive__seal { width: 2.6rem; height: 2.6rem; font-size: 1.45rem; }
+  .archive__note { grid-column: 1 / -1; text-align: left; }
+
+  .ev { grid-template-columns: 4.9rem minmax(0, 1fr); gap: .1rem .8rem; }
+  .ev__role { grid-column: 2; justify-self: start; text-align: left; flex-wrap: wrap; }
   .thread { grid-template-columns: 1fr; padding: 0 0 0 1.4rem; }
   .thread::before { top: .5rem; bottom: .9rem; left: .34rem; right: auto; width: 1px; height: auto; }
   .thread li { text-align: left; padding: 0 0 .9rem; }
   .thread li::before { top: .45rem; left: -1.4rem; margin-left: 0; }
   .thread li span { display: inline; margin: 0 .5rem 0 0; }
-  .tally { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem 1rem; }
+  .tally { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem 1rem; }
   .tally b { display: block; margin: 0 0 .2rem; }
   .tally span { line-height: 1.5; }
   .tally__span { grid-column: 1 / -1; margin-left: 0; }
@@ -454,7 +564,8 @@ b, strong { color: var(--ink); font-weight: 600; }
   .label { border-color: var(--rule); background: none; }
   .ch { padding-top: 2.4rem; }
   .ch__margin { position: static; }
-  .plate, .card { break-inside: avoid; }
+  .plate, .card, .archive, .ev { break-inside: avoid; }
+  .film { display: none; }
   .js .rv { opacity: 1; transform: none; }
 }
 

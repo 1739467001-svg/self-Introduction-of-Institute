@@ -1,6 +1,7 @@
 /* 作品博物志 · 渐进增强
    没有这份脚本，页面也完整可读；它只负责：顶栏状态与阅读进度、
-   段落揭示、当前章节高亮、Fig.1 的指针视差，以及封面离屏时暂停动画。 */
+   段落揭示、当前章节高亮、Fig.1 的指针视差、封面离屏时暂停动画，
+   以及影像滑出视口时暂停播放。 */
 (function () {
   "use strict";
   window.__cjy = true;
@@ -70,6 +71,13 @@
       }
     }, { rootMargin: "-40% 0px -55% 0px" }).observe(cover);
   }
+
+  /* ---------------------------------------------------- 影像：滑出视口即暂停（无声，省流量） */
+  document.querySelectorAll("video").forEach(function (v) {
+    new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting && !v.paused) v.pause();
+    }).observe(v);
+  });
 
   /* ---------------------------------------------------- 封面：离屏暂停 + 指针视差 */
   if (!cover) return;
