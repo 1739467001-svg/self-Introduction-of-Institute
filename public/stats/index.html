@@ -56,6 +56,7 @@
     table { width: 100%; border-collapse: collapse; font-size: .84rem; }
     caption { text-align: left; }
     th, td { padding: .42rem .5rem; text-align: left; border-bottom: 1px solid var(--rule-2); vertical-align: top; }
+    td { overflow-wrap: anywhere; }          /* 来源、标签可能是一长串没有空格的文字 */
     th { font-weight: 600; color: var(--muted); font-size: .78rem; white-space: nowrap; }
     h2.sub { margin-top: 1.6rem; font-size: 1rem; }
     td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
@@ -95,6 +96,7 @@
       </section>
       <section class="card" aria-labelledby="h-src">
         <h2 id="h-src">从哪里来</h2>
+        <p class="lede">「简历」：打开过简历 PDF；「联系」：点了发邮件或复制微信号。</p>
         <div class="scroll" id="sources"></div>
       </section>
       <section class="card" aria-labelledby="h-act">
@@ -349,7 +351,7 @@
         src[k][1]++; if (s.acts.resume) src[k][2]++; if (s.acts.mail || s.acts.wechat) src[k][3]++;
       });
       put("sources", table(Object.keys(src).map(function (k) { return src[k]; }).sort(function (a, b) { return b[1] - a[1]; }),
-                           ["来源", "访问", "打开简历", "邮件 / 微信"], [0, 1, 1, 1]));
+                           ["来源", "访问", "简历", "联系"], [0, 1, 1, 1]));
 
       var acts = ACTIONS.map(function (a) { return [a[1], count(function (s) { return s.acts[a[0]]; })]; });
       var works = {};
