@@ -11,6 +11,22 @@ map $http_host $site_host {
     ""      $host;
 }
 
+# 访问统计：页面发来的匿名参数逐行写成 JSON，不写 IP。日志放在 /var/lib/cjy-stats，
+# 在 Zeabur 给这个目录挂一个卷，重新部署也不会丢。
+log_format cjy_hits escape=json '{"t":"$time_iso8601","e":"$arg_e","p":"$arg_p","s":"$arg_s","n":"$arg_n",'
+                                '"r":"$arg_r","f":"$arg_f","w":"$arg_w","l":"$arg_l","ua":"$http_user_agent"}';
+# 限流按真实访客算（平台代理后面，$remote_addr 都是代理的地址）
+map $http_x_forwarded_for $cjy_client {
+    default $http_x_forwarded_for;
+    ""      $binary_remote_addr;
+}
+limit_req_zone $cjy_client zone=cjy_hits:1m rate=10r/s;
+# 被限流挡下（429）的请求不写进统计日志
+map $status $cjy_logged {
+    204     1;
+    default 0;
+}
+
 server {
     listen       ${PORT};
     server_name  _;
@@ -45,6 +61,33 @@ server {
     # 静态资源缓存一周；expires 已经写出 Cache-Control，不要再 add_header 一份
     location ~* \.(?:css|js|png|jpe?g|gif|svg|ico|webmanifest|webp|mp4|pdf)$ {
         expires 7d;
+    }
+
+    # 统计信标：记一行日志、回 204；这条请求不进普通访问日志。
+    # 用 try_files 而不是 return：return 在限流之前就结束了请求，limit_req 不会生效
+    location = /hit {
+        access_log /var/lib/cjy-stats/hits.log cjy_hits if=$cjy_logged;
+        limit_req  zone=cjy_hits burst=40 nodelay;
+        limit_req_status 429;
+        expires    epoch;
+        try_files  /__cjy_hit__ =204;
+    }
+
+    # 统计面板：用户名 cjy，密码来自环境变量 STATS_PASSWORD（docker/40-cjy-stats.sh 写进密码文件）；
+    # 没设置密码时文件为空，谁也进不去
+    location ^~ /stats/ {
+        auth_basic           "CJY stats";
+        auth_basic_user_file /etc/nginx/cjy-stats.htpasswd;
+        expires              epoch;
+    }
+    location = /stats/hits.log {
+        auth_basic           "CJY stats";
+        auth_basic_user_file /etc/nginx/cjy-stats.htpasswd;
+        alias                /var/lib/cjy-stats/hits.log;
+        types                { }
+        default_type         text/plain;
+        sub_filter_types     text/html;
+        expires              epoch;
     }
 
     # on-brand 404 page (keeps a 404 status)

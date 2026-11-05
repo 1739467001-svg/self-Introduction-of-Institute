@@ -6,7 +6,7 @@
   <title>标本缺失 · 陈俊烨</title>
   <meta name="robots" content="noindex" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="/styles.css?v=261103" />
+  <link rel="stylesheet" href="/styles.css?v=261105" />
 </head>
 <body>
   <main class="lost">
@@ -14,7 +14,23 @@
     <p class="lost__no">No. 404</p>
     <h1>此处的标本尚未入藏</h1>
     <p class="lost__en">This specimen is not in the collection.</p>
+    <p class="lost__egg" id="egg-note" hidden>你采集到一枚彩蛋：<b>迷路</b>。回到首页，右侧的采集册里能看到它。</p>
     <p><a href="/">回到博物志首页</a></p>
   </main>
+  <script>
+    /* 彩蛋「迷路」：记进采集册（只存在本机浏览器里），并发一条匿名统计 */
+    (function () {
+      try {
+        var key = "cjy-eggs", got = JSON.parse(localStorage.getItem(key) || "[]");
+        if (got.indexOf("lost") >= 0) return;
+        got.push("lost");
+        localStorage.setItem(key, JSON.stringify(got));
+        document.getElementById("egg-note").hidden = false;
+        var off = navigator.doNotTrack === "1" || navigator.globalPrivacyControl === true || localStorage.getItem("cjy-notrack") === "1";
+        var sid = sessionStorage.getItem("cjy-sid") || "lost";
+        if (!off && navigator.sendBeacon) navigator.sendBeacon("/hit?e=egg&p=lost&s=" + encodeURIComponent(sid));
+      } catch (e) {}
+    })();
+  </script>
 </body>
 </html>

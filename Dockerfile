@@ -12,12 +12,18 @@ ENV NGINX_ENVSUBST_FILTER=PORT
 COPY default.conf.template /etc/nginx/templates/default.conf.template
 COPY public/ /usr/share/nginx/html/
 
-# Rewrite ?v= on styles.css / main.js to a content hash, so a CSS or JS change
-# reaches visitors even if the version in index.html was not bumped by hand.
+# Visitor stats: log directory + /stats/ password file from STATS_PASSWORD,
+# prepared at container start (see the script). Mount a volume at
+# /var/lib/cjy-stats to keep the log across redeploys.
+COPY docker/40-cjy-stats.sh /docker-entrypoint.d/40-cjy-stats.sh
+RUN chmod +x /docker-entrypoint.d/40-cjy-stats.sh
+
+# Rewrite ?v= on styles.css / main.js / play.js to a content hash, so a CSS or JS
+# change reaches visitors even if the version in index.html was not bumped by hand.
 RUN cd /usr/share/nginx/html \
- && css=$(md5sum styles.css | cut -c1-8) \
- && js=$(md5sum main.js | cut -c1-8) \
- && sed -i -e "s/styles\.css?v=[0-9A-Za-z]*/styles.css?v=$css/g" \
-           -e "s/main\.js?v=[0-9A-Za-z]*/main.js?v=$js/g" index.html 404.html
+ && for f in styles.css main.js play.js; do \
+      h=$(md5sum "$f" | cut -c1-8); \
+      sed -i "s/${f%.*}\.${f##*.}?v=[0-9A-Za-z]*/$f?v=$h/g" index.html 404.html; \
+    done
 
 EXPOSE 8080

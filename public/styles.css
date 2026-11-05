@@ -487,6 +487,128 @@ b, strong { color: var(--ink); font-weight: 600; }
 .colophon a { color: var(--cream); }
 .colophon a:hover { color: #fff; }
 
+/* ------------------------------------------------------------------ 两侧：观察指南 · 采集册（play.js 生成） */
+/* 宽屏（≥1640）在纸面上停在页边（封面、封底收起）；更窄时收成页边标签，点开是抽屉；
+   ≤880 时是底部两枚小按钮（再宽一点，左侧标签会压到正文开头） */
+.rail {
+  position: fixed; z-index: 60; top: calc(50% + var(--bar-h) / 2); transform: translateY(-50%);
+  width: min(290px, calc(100vw - 4.6rem)); max-height: calc(100vh - var(--bar-h) - 2.4rem); overflow: auto;
+  padding: 1rem 1.1rem 1.05rem; font-size: .82rem; line-height: 1.65; color: var(--ink-2);
+  background: var(--card); border: 1px solid var(--rule); box-shadow: 0 18px 40px -24px rgba(60, 38, 10, .55);
+  visibility: hidden; opacity: 0; transition: opacity .3s, visibility 0s .3s;
+}
+.rail--guide { left: 2.8rem; }
+.rail--eggs { right: 2.8rem; }
+.rail.is-open { visibility: visible; opacity: 1; transition: opacity .3s; }
+.rail__close {
+  position: absolute; top: .35rem; right: .35rem; width: 1.9rem; height: 1.9rem; padding: 0; cursor: pointer;
+  font: inherit; font-size: 1.1rem; line-height: 1; color: var(--muted); background: none; border: 0; border-radius: 50%;
+}
+.rail__close:hover { color: var(--ink); background: var(--paper-2); }
+.rail__kicker { margin: 0; font-family: var(--serif-en); font-size: .66rem; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+.rail__title { display: flex; align-items: baseline; gap: .6rem; margin: .1rem 0 .7rem; font-family: var(--serif-cn); font-size: 1.05rem; color: var(--ink); }
+.rail__title:focus { outline: none; }
+.rail__title:focus-visible { outline: 2px solid var(--ochre-text); outline-offset: 3px; }
+.rail__count { font-family: var(--mono); font-size: .74rem; font-weight: 400; color: var(--ochre-text); }
+.rail__list { list-style: none; margin: 0; padding: 0; counter-reset: g; }
+.rail__list li { position: relative; margin: 0 0 .75rem; padding-left: 1.3rem; }
+.rail__list li::before { counter-increment: g; content: counter(g); position: absolute; left: 0; top: .05rem; font-family: var(--serif-en); color: var(--ochre); }
+.rail__list b { display: block; color: var(--ink); }
+.rail__btn {
+  margin: .2rem .4rem .2rem 0; padding: .05rem .65rem; font: inherit; font-size: .78rem; cursor: pointer;
+  color: var(--cream); background: var(--cinnabar); border: 0; border-radius: 3px;
+}
+.rail__btn[aria-pressed="true"] { color: var(--cinnabar); background: none; box-shadow: inset 0 0 0 1px var(--cinnabar); }
+.rail__foot { margin: .7rem 0 0; font-size: .74rem; color: var(--muted); }
+.eggs { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+.egg { display: grid; grid-template-columns: 1.2rem minmax(0, 1fr); gap: 0 .55rem; padding: .45rem 0; border-bottom: 1px solid var(--rule-2); }
+.egg__mark {
+  display: grid; place-items: center; width: 1.2rem; height: 1.2rem; margin-top: .15rem;
+  font-size: .66rem; color: var(--muted); border: 1px dashed var(--rule); border-radius: 2px;
+}
+.egg__mark.seal { border: 0; color: var(--cream); }
+.egg b { display: block; font-weight: 600; color: var(--muted); letter-spacing: .1em; }
+.egg.is-found b { color: var(--ink); letter-spacing: 0; }
+.egg small { display: block; font-size: .76rem; line-height: 1.55; color: var(--muted); }
+.eggs__all { margin: .8rem 0 0; padding: .6rem .7rem; font-size: .8rem; color: var(--ink); background: rgba(156, 106, 30, .1); }
+
+.tab {
+  position: fixed; z-index: 60; top: calc(50% + var(--bar-h) / 2); transform: translateY(-50%);
+  width: 2.1rem; padding: .7rem 0 .65rem; cursor: pointer; font: inherit; font-size: .78rem; line-height: 1.3;
+  color: var(--ochre-text); background: var(--card); border: 1px solid var(--ochre);
+  box-shadow: 0 8px 20px -14px rgba(60, 38, 10, .6);
+}
+.tab--guide { left: 0; border-left: 0; border-radius: 0 4px 4px 0; }
+.tab--eggs { right: 0; border-right: 0; border-radius: 4px 0 0 4px; }
+.tab__word span { display: block; }
+.tab__n { display: block; margin-top: .4rem; font-family: var(--mono); font-size: .66rem; }
+.tab[aria-expanded="true"] { color: var(--cream); background: #6E470F; border-color: #6E470F; }
+
+.toast {
+  position: fixed; z-index: 70; left: 50%; bottom: 1.4rem; transform: translateX(-50%);
+  width: max-content; max-width: min(30rem, calc(100vw - 2rem)); padding: .75rem 1.05rem;
+  font-size: .86rem; line-height: 1.6; color: var(--cream); background: #2B1F12; border-radius: 4px;
+  box-shadow: 0 0 0 1px rgba(251, 243, 226, .22), 0 16px 36px -18px rgba(30, 18, 4, .7);
+}
+.toast b { display: block; font-weight: 600; }
+.toast[hidden] { display: none; }
+
+@media (min-width: 1640px) {
+  .past-cover:not(.at-end) .rail {
+    visibility: visible; opacity: 1; width: 196px; padding: .9rem .95rem 1rem;
+    background: rgba(250, 245, 234, .82); box-shadow: none; transition: opacity .4s;
+  }
+  .past-cover:not(.at-end) .rail--guide { left: 20px; }
+  .past-cover:not(.at-end) .rail--eggs { right: 20px; }
+  .past-cover:not(.at-end) .tab, .past-cover:not(.at-end) .rail__close { display: none; }
+}
+@media (max-width: 880px) {
+  .tab {
+    top: auto; bottom: 14px; transform: none; width: auto; padding: .3rem .85rem;
+    border: 1px solid var(--ochre); border-radius: 99px;
+  }
+  .tab--guide { left: 12px; }
+  .tab--eggs { right: 12px; }
+  .tab__word span, .tab__n { display: inline; }
+  .tab__n { margin: 0 0 0 .4rem; }
+  .rail { top: auto; bottom: 60px; left: 12px; right: 12px; width: auto; max-height: 68vh; transform: none; }
+  .toast { bottom: 62px; }
+}
+@media (pointer: coarse) { .only-keys { display: none; } }
+
+/* Fig. 1 可以拖着转、点出涟漪；转满三圈会「绽开」 */
+.js .specimen { position: relative; cursor: grab; touch-action: pan-y; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+.js .specimen.is-grabbing { cursor: grabbing; }
+.ripple {
+  position: absolute; width: 16px; height: 16px; margin: -8px 0 0 -8px; pointer-events: none;
+  border: 1px solid var(--cream); border-radius: 50%; animation: ripple 1.1s ease-out forwards;
+}
+.ripple--core { border-width: 2px; animation-duration: 1.6s; }
+@keyframes ripple { to { transform: scale(8); opacity: 0; } }
+.specimen.is-bloom .specimen__svg { animation: bloom 1.4s var(--ease); }
+.specimen.is-bloom .pulse { animation-duration: .45s; }
+@keyframes bloom { 40% { scale: 1.12; } }
+
+/* 盖章：朱砂印只用在这里和其它印章上 */
+.is-stamping, .is-stamping * {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Crect x='3' y='3' width='26' height='26' rx='3' fill='%23B5432B'/%3E%3Ctext x='16' y='22.5' font-size='17' font-weight='700' text-anchor='middle' fill='%23FBF3E2' font-family='serif'%3E%E9%99%88%3C/text%3E%3C/svg%3E") 16 16, crosshair !important;
+}
+.stamp {
+  position: absolute; z-index: 40; display: grid; place-items: center; width: 52px; height: 52px; pointer-events: none;
+  font-family: var(--serif-cn); font-weight: 700; font-size: 1.75rem; line-height: 1; color: var(--cream);
+  background: var(--cinnabar); border-radius: 3px; opacity: .9; mix-blend-mode: multiply;
+  box-shadow: inset 0 0 0 2px var(--cinnabar), inset 0 0 0 3.5px rgba(251, 243, 226, .6);
+  transform: rotate(var(--r, -4deg)); animation: stamp .35s cubic-bezier(.3, 1.4, .5, 1) both;
+}
+@keyframes stamp { from { transform: rotate(var(--r, -4deg)) scale(1.7); opacity: 0; } }
+
+/* 显微镜：敲 cjy */
+.lens {
+  position: fixed; inset: 0; z-index: 85; pointer-events: none; color: var(--cream);
+  background: radial-gradient(circle at var(--lx, 50%) var(--ly, 50%), transparent 0 118px, rgba(28, 19, 9, .84) 121px);
+}
+.lens svg { position: absolute; left: var(--lx, 50%); top: var(--ly, 50%); width: 260px; height: 260px; margin: -130px 0 0 -130px; overflow: visible; }
+
 /* ------------------------------------------------------------------ 揭示 */
 .js .rv { opacity: 0; transform: translateY(16px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
 .js .rv.is-in { opacity: 1; transform: none; }
@@ -570,6 +692,8 @@ b, strong { color: var(--ink); font-weight: 600; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .specimen .spec, .specimen .reticle, .specimen .pulse, .cover__cue span { animation: none; }
+  .ripple, .stamp, .specimen.is-bloom .specimen__svg { animation: none; }
+  .rail, .rail.is-open { transition: none; }
   .js .rv { opacity: 1; transform: none; transition: none; }
   .js .helix__svg .hx { stroke-dashoffset: 0; transition: none; }
   .js .helix__svg .rung, .js .helix__svg .rung-dot, .js .helix__svg .rung-label { opacity: 1; transition: none; }
@@ -589,7 +713,7 @@ b, strong { color: var(--ink); font-weight: 600; }
   .ch { padding-top: 2.4rem; }
   .ch__margin { position: static; }
   .plate, .card, .archive, .ev { break-inside: avoid; }
-  .film, .actions, .copy { display: none; }
+  .film, .actions, .copy, .rail, .tab, .toast, .stamp, .lens { display: none !important; }
   .js .rv { opacity: 1; transform: none; }
 }
 
@@ -598,4 +722,5 @@ b, strong { color: var(--ink); font-weight: 600; }
 .lost .seal { margin-bottom: 1.4rem; }
 .lost__no { margin: 0; font-family: var(--mono); font-size: .8rem; letter-spacing: .14em; color: var(--ochre-text); }
 .lost h1 { margin: .5rem 0 .2rem; font-family: var(--serif-cn); font-size: clamp(1.5rem, 4vw, 2rem); color: var(--ink); letter-spacing: .06em; }
+.lost__egg { margin: 0 0 1rem; padding: .5rem .9rem; font-size: .88rem; color: var(--ink); background: rgba(156, 106, 30, .1); }
 .lost__en { margin: 0 0 1.4rem; font-family: var(--serif-en); font-style: italic; color: var(--muted); }

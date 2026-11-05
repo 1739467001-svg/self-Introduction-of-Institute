@@ -1,7 +1,8 @@
 /* 作品博物志 · 渐进增强
    没有这份脚本，页面也完整可读；它只负责：顶栏状态与阅读进度、
    段落揭示、当前章节高亮、Fig.1 的指针视差、封面离屏时暂停动画、
-   影像滑出视口时暂停播放，以及「复制微信号」按钮。 */
+   影像滑出视口时暂停播放、「复制微信号」按钮，以及自建的匿名访问统计。
+   互动与彩蛋在 play.js。 */
 (function () {
   "use strict";
   window.__cjy = true;
@@ -12,6 +13,64 @@
   var specimen = document.getElementById("specimen");
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var hasIO = "IntersectionObserver" in window;
+
+  /* ---------------------------------------------------- 访问统计（自建、匿名）
+     只记录：从哪里来、读到哪一章、点了什么、停留多久、采到哪枚彩蛋。
+     不用 Cookie，不记 IP；浏览器开启「请勿追踪」时一条也不发。
+     链接带 ?from=标签 可以区分投递渠道；?notrack=1 让这台浏览器不再计入（?notrack=0 恢复）。 */
+  function stored(area, key, value) {
+    try {
+      if (value === undefined) return window[area].getItem(key);
+      window[area].setItem(key, value);
+    } catch (e) { return null; }
+    return value;
+  }
+  var params = new URLSearchParams(location.search);
+  if (params.has("notrack")) stored("localStorage", "cjy-notrack", params.get("notrack") === "0" ? "" : "1");
+  var tracking = !(navigator.doNotTrack === "1" || window.doNotTrack === "1" || navigator.globalPrivacyControl === true) &&
+                 stored("localStorage", "cjy-notrack") !== "1";
+  var sid = stored("sessionStorage", "cjy-sid");
+  var fresh = !sid;
+  if (fresh) sid = stored("sessionStorage", "cjy-sid", Math.random().toString(16).slice(2, 10));
+
+  function hit(e, p, extra) {
+    if (!tracking) return;
+    var url = "hit?e=" + e + "&s=" + sid + (p != null ? "&p=" + encodeURIComponent(String(p).slice(0, 48)) : "") + (extra || "");
+    try { if (navigator.sendBeacon && navigator.sendBeacon(url)) return; } catch (err) {}
+    new Image().src = url;
+  }
+  window.cjyHit = hit;
+
+  if (fresh) {
+    var ref = "";
+    try { var r = new URL(document.referrer); if (r.host !== location.host) ref = r.host; } catch (e) {}
+    var seen = stored("localStorage", "cjy-seen");
+    stored("localStorage", "cjy-seen", "1");
+    hit("view", null, "&n=" + (seen ? 0 : 1) + "&r=" + encodeURIComponent(ref) +
+        "&f=" + encodeURIComponent((params.get("from") || "").slice(0, 32)) +
+        "&w=" + window.innerWidth + "&l=" + encodeURIComponent(navigator.language || ""));
+  }
+
+  var shownAt = Date.now(), spent = 0;
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "hidden") {
+      spent += Date.now() - shownAt;
+      hit("time", Math.round(spent / 1000));
+    } else {
+      shownAt = Date.now();
+    }
+  });
+
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a, button");
+    if (!a) return;
+    var href = a.getAttribute("href") || "";
+    if (/\.pdf$/.test(href)) hit("resume");
+    else if (href.indexOf("mailto:") === 0) hit("mail");
+    else if (a.hasAttribute("data-copy")) hit("wechat");
+    else if (a.classList.contains("go")) { var art = a.closest("[id^='no-']"); hit("go", art ? art.id : href); }
+    else if (/^https?:/.test(href)) hit("out", href.replace(/^https?:\/\//, ""));
+  }, true);
 
   /* ---------------------------------------------------- 顶栏 + 阅读进度 */
   var ticking = false;
@@ -85,10 +144,11 @@
   document.querySelectorAll(".bar__nav a").forEach(function (a) {
     links[a.getAttribute("href").slice(1)] = a;
   });
-  var current = null;
+  var current = null, read = {};
   var spy = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (!e.isIntersecting) return;
+      if (!read[e.target.id]) { read[e.target.id] = 1; hit("read", e.target.id); }
       if (current) current.removeAttribute("aria-current");
       current = links[e.target.id] || null;
       if (current) current.setAttribute("aria-current", "true");
@@ -106,6 +166,8 @@
 
   /* ---------------------------------------------------- 影像：滑出视口即暂停（无声，省流量） */
   document.querySelectorAll("video").forEach(function (v) {
+    v.addEventListener("play", function () { hit("film", "play"); });
+    v.addEventListener("ended", function () { hit("film", "end"); });
     new IntersectionObserver(function (entries) {
       if (!entries[0].isIntersecting && !v.paused) v.pause();
     }).observe(v);

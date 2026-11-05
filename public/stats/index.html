@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>访问统计 · 作品博物志</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <style>
+    /* 只有本人看：nginx 用 STATS_PASSWORD 保护。数据就是 hits.log，在这个浏览器里汇总。 */
+    :root {
+      --paper: #F3ECDD; --card: #FAF5EA; --ink: #23190F; --ink-2: #4A3D2F; --muted: #6B5A45;
+      --rule: #D6C6A8; --rule-2: #E3D7BF; --ochre: #9C6A1E; --ochre-text: #7A4F12; --cream: #FBF3E2;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+      --serif-cn: "Noto Serif SC", "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "STSong", serif;
+      --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink-2); font: 15px/1.7 var(--sans); }
+    main { max-width: 1120px; margin: 0 auto; padding: 2rem clamp(1rem, 4vw, 2.4rem) 4rem; }
+    h1 { margin: 0; font-family: var(--serif-cn); font-size: 1.6rem; color: var(--ink); letter-spacing: .06em; }
+    h2 { margin: 0 0 .9rem; font-family: var(--serif-cn); font-size: 1.1rem; color: var(--ink); }
+    a { color: var(--ochre-text); }
+    .lede { margin: .4rem 0 0; font-size: .86rem; color: var(--muted); }
+    .filters { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.6rem 0 1.4rem; }
+    .filters button {
+      padding: .3rem .9rem; font: inherit; font-size: .86rem; cursor: pointer; color: var(--ochre-text);
+      background: var(--card); border: 1px solid var(--rule); border-radius: 99px;
+    }
+    .filters button[aria-pressed="true"] { color: var(--cream); background: #6E470F; border-color: #6E470F; }
+    .tiles { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+    .tile { padding: .9rem 1rem; background: var(--card); }
+    .tile dt { font-size: .8rem; color: var(--muted); }
+    .tile dd { margin: .2rem 0 0; font-size: 1.9rem; font-weight: 600; line-height: 1.2; color: var(--ink); }
+    .tile small { display: block; font-size: .76rem; color: var(--muted); }
+    .grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 1.4rem; margin-top: 1.4rem; }
+    .card { padding: 1.1rem 1.2rem 1.2rem; background: var(--card); border: 1px solid var(--rule); min-width: 0; }
+    .card--wide { grid-column: 1 / -1; }
+    .chart { position: relative; }
+    .chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+    .chart .bar { fill: var(--ochre); }
+    .chart .hit:hover .bar, .chart .hit:focus .bar { fill: #B07C2A; }
+    .chart .hit:focus { outline: none; }
+    .chart .hit:focus-visible .hitbox { stroke: var(--ochre-text); stroke-width: 1.5; }
+    .chart .grid-line { stroke: var(--rule-2); stroke-width: 1; }
+    .chart .axis { stroke: var(--rule); stroke-width: 1; }
+    .chart text { font: 11px var(--sans); fill: var(--muted); }
+    .chart text.val { fill: var(--ink-2); font-size: 12px; }
+    .tip {
+      position: absolute; z-index: 2; pointer-events: none; padding: .35rem .6rem; font-size: .8rem; line-height: 1.45;
+      color: var(--cream); background: #2B1F12; border-radius: 3px; white-space: nowrap; transform: translate(-50%, -110%);
+    }
+    .tip b { display: block; font-size: .95rem; }
+    details { margin-top: .6rem; font-size: .82rem; }
+    summary { cursor: pointer; color: var(--ochre-text); width: max-content; }
+    table { width: 100%; border-collapse: collapse; font-size: .84rem; }
+    caption { text-align: left; }
+    th, td { padding: .42rem .5rem; text-align: left; border-bottom: 1px solid var(--rule-2); vertical-align: top; }
+    th { font-weight: 600; color: var(--muted); font-size: .78rem; white-space: nowrap; }
+    h2.sub { margin-top: 1.6rem; font-size: 1rem; }
+    td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+    .scroll { overflow-x: auto; }
+    .empty { margin: 0; color: var(--muted); font-size: .86rem; }
+    .note { margin: 1.6rem 0 0; font-size: .8rem; color: var(--muted); }
+    @media (max-width: 860px) {
+      .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>访问统计</h1>
+    <p class="lede">数据来自本站 nginx 写下的匿名日志：没有 Cookie，没有 IP。汇总只在这个浏览器里进行。<span id="me"></span></p>
+
+    <div class="filters" role="group" aria-label="时间范围">
+      <button type="button" data-range="today">今天</button>
+      <button type="button" data-range="7">近 7 天</button>
+      <button type="button" data-range="30">近 30 天</button>
+      <button type="button" data-range="all">全部</button>
+    </div>
+
+    <dl class="tiles" id="tiles"></dl>
+
+    <div class="grid">
+      <section class="card card--wide" aria-labelledby="h-daily">
+        <h2 id="h-daily">每天的访问</h2>
+        <div class="chart" id="daily"></div>
+        <details><summary>表格</summary><div class="scroll" id="daily-table"></div></details>
+      </section>
+      <section class="card" aria-labelledby="h-depth">
+        <h2 id="h-depth">读到哪一章</h2>
+        <div class="chart" id="depth"></div>
+        <details><summary>表格</summary><div class="scroll" id="depth-table"></div></details>
+      </section>
+      <section class="card" aria-labelledby="h-src">
+        <h2 id="h-src">从哪里来</h2>
+        <div class="scroll" id="sources"></div>
+      </section>
+      <section class="card" aria-labelledby="h-act">
+        <h2 id="h-act">做了什么</h2>
+        <div class="scroll" id="actions"></div>
+      </section>
+      <section class="card" aria-labelledby="h-egg">
+        <h2 id="h-egg">彩蛋</h2>
+        <div class="scroll" id="eggs"></div>
+      </section>
+      <section class="card card--wide" aria-labelledby="h-recent">
+        <h2 id="h-recent">最近的访问</h2>
+        <div class="scroll" id="recent"></div>
+      </section>
+    </div>
+    <p class="note" id="note"></p>
+  </main>
+
+  <script>
+  (function () {
+    "use strict";
+    // 能打开这一页的就是本人：这台浏览器不再计入统计
+    try { localStorage.setItem("cjy-notrack", "1"); document.getElementById("me").textContent = " 这台浏览器已标记为本人，不再计入。"; } catch (e) {}
+
+    var CHAPTERS = [["summary", "总述"], ["specimens", "标本"], ["curriculum", "履历"], ["records", "记录"],
+                    ["directions", "方向"], ["correspondence", "通信"], ["end", "封底"]];
+    var EGGS = { nucleus: "细胞核", spin: "离心力", seal: "三枚印", scope: "显微镜", film: "九十秒", end: "封底",
+                 lost: "迷路", night: "夜读", console: "控制台", all: "集齐九枚" };
+    var ACTIONS = [["resume", "打开简历 PDF"], ["mail", "点了发邮件"], ["wechat", "复制微信号"], ["play", "播放 Film 1"],
+                   ["filmEnd", "看完 Film 1"], ["go", "打开作品链接"], ["out", "打开其它外链"], ["ui", "打开两侧指南 / 采集册"]];
+    var titles = {};
+    var events = [], skipped = 0;
+    var range = new URLSearchParams(location.search).get("range") || "30";
+
+    function el(tag, cls, text) {
+      var n = document.createElement(tag);
+      if (cls) n.className = cls;
+      if (text != null) n.textContent = text;          // 日志内容来自访客，一律当纯文本
+      return n;
+    }
+    function dec(v) { try { return decodeURIComponent(v || ""); } catch (e) { return v || ""; } }
+    function pad(n) { return (n < 10 ? "0" : "") + n; }
+    function day(d) { return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
+    function clock(d) { return pad(d.getMonth() + 1) + "-" + pad(d.getDate()) + " " + pad(d.getHours()) + ":" + pad(d.getMinutes()); }
+    function dur(s) { return s >= 60 ? Math.floor(s / 60) + " 分 " + pad(s % 60) + " 秒" : s + " 秒"; }
+
+    function device(ua) {
+      if (/MicroMessenger/i.test(ua)) return "微信";
+      if (/iPad|Tablet/i.test(ua)) return "平板";
+      if (/Mobi|Android|iPhone/i.test(ua)) return "手机";
+      return "电脑";
+    }
+    var HOSTS = [[/weixin|wechat|qq\.com/, "微信 / QQ"], [/baidu/, "百度"], [/google/, "Google"], [/bing/, "Bing"],
+                 [/github/, "GitHub"], [/zhipin/, "BOSS 直聘"], [/linkedin/, "LinkedIn"], [/feishu|larksuite/, "飞书"],
+                 [/dingtalk/, "钉钉"], [/xiaohongshu|xhslink/, "小红书"], [/zhihu/, "知乎"]];
+    function source(s) {
+      if (s.from) return "标签：" + s.from;
+      if (s.ref) {
+        for (var i = 0; i < HOSTS.length; i++) if (HOSTS[i][0].test(s.ref)) return HOSTS[i][1];
+        return s.ref;
+      }
+      return /MicroMessenger/i.test(s.ua) ? "微信内打开" : "直接打开 / 未知";
+    }
+
+    function parse(text) {
+      text.split("\n").forEach(function (line) {
+        if (!line.trim()) return;
+        var o;
+        try { o = JSON.parse(line); } catch (e) { return; }
+        var t = new Date(o.t);
+        if (isNaN(t)) return;
+        if (/bot|spider|crawl|slurp|HeadlessChrome|Playwright|Lighthouse/i.test(o.ua || "")) { skipped++; return; }
+        events.push({ t: t, e: dec(o.e), p: dec(o.p), s: dec(o.s) || "?", n: o.n, r: dec(o.r), f: dec(o.f),
+                      w: parseInt(o.w, 10) || 0, ua: o.ua || "" });
+      });
+      events.sort(function (a, b) { return a.t - b.t; });
+    }
+
+    function inRange(t) {
+      if (range === "all") return true;
+      var start = new Date(); start.setHours(0, 0, 0, 0);
+      if (range !== "today") start.setDate(start.getDate() - (parseInt(range, 10) - 1));
+      return t >= start;
+    }
+
+    function sessions(list) {
+      var map = {}, out = [];
+      list.forEach(function (ev) {
+        var s = map[ev.s];
+        if (!s) {
+          s = map[ev.s] = { id: ev.s, start: ev.t, end: ev.t, n: false, from: "", ref: "", w: 0, ua: ev.ua,
+                            reads: {}, acts: {}, go: [], eggs: [], time: 0 };
+          out.push(s);
+        }
+        s.end = ev.t;
+        if (ev.e === "view") { s.n = ev.n === "1"; s.from = ev.f; s.ref = ev.r; s.w = ev.w; s.ua = ev.ua; }
+        else if (ev.e === "read") s.reads[ev.p] = 1;
+        else if (ev.e === "time") s.time = Math.max(s.time, parseInt(ev.p, 10) || 0);
+        else if (ev.e === "egg") { if (s.eggs.indexOf(ev.p) < 0) s.eggs.push(ev.p); if (ev.p === "end") s.reads.end = 1; }
+        else if (ev.e === "go") { s.acts.go = 1; s.go.push(ev.p); }
+        else if (ev.e === "film") s.acts[ev.p === "end" ? "filmEnd" : "play"] = 1;
+        else if (ev.e) s.acts[ev.e] = 1;
+      });
+      return out;
+    }
+
+    function table(rows, head, numeric) {
+      if (!rows.length) return el("p", "empty", "这段时间里还没有数据。");
+      var t = el("table"), tr = el("tr");
+      head.forEach(function (h, i) { tr.appendChild(el("th", numeric[i] ? "num" : null, h)); });
+      var th = el("thead"); th.appendChild(tr); t.appendChild(th);
+      var tb = el("tbody");
+      rows.forEach(function (r) {
+        var row = el("tr");
+        r.forEach(function (c, i) { row.appendChild(el("td", numeric[i] ? "num" : null, String(c))); });
+        tb.appendChild(row);
+      });
+      t.appendChild(tb);
+      return t;
+    }
+    function put(id, node) { var box = document.getElementById(id); box.textContent = ""; box.appendChild(node); }
+
+    var NS = "http://www.w3.org/2000/svg";
+    function svgEl(tag, attrs, text) {
+      var n = document.createElementNS(NS, tag);
+      for (var k in attrs) n.setAttribute(k, attrs[k]);
+      if (text != null) n.textContent = text;
+      return n;
+    }
+    // 柱的数据端圆角 4px、贴基线一端方角
+    function barPath(x, y, w, h, r) {
+      r = Math.min(r, w / 2, h);
+      return "M" + x + "," + (y + h) + "V" + (y + r) + "Q" + x + "," + y + " " + (x + r) + "," + y +
+             "H" + (x + w - r) + "Q" + (x + w) + "," + y + " " + (x + w) + "," + (y + r) + "V" + (y + h) + "Z";
+    }
+    function hbarPath(x, y, w, h, r) {
+      r = Math.min(r, h / 2, w);
+      return "M" + x + "," + y + "H" + (x + w - r) + "Q" + (x + w) + "," + y + " " + (x + w) + "," + (y + r) +
+             "V" + (y + h - r) + "Q" + (x + w) + "," + (y + h) + " " + (x + w - r) + "," + (y + h) + "H" + x + "Z";
+    }
+    function tooltip(box, g, title, value, cx, cy) {
+      function show() {
+        var tip = box.querySelector(".tip") || box.appendChild(el("div", "tip"));
+        tip.textContent = "";
+        tip.appendChild(el("b", null, value));
+        tip.appendChild(document.createTextNode(title));
+        tip.style.left = cx + "px";
+        tip.style.top = cy + "px";
+      }
+      function hide() { var tip = box.querySelector(".tip"); if (tip) tip.remove(); }
+      g.addEventListener("pointerenter", show); g.addEventListener("focus", show);
+      g.addEventListener("pointerleave", hide); g.addEventListener("blur", hide);
+    }
+
+    function columns(id, data, label) {
+      var box = document.getElementById(id);
+      box.textContent = "";
+      var W = Math.max(280, box.clientWidth), H = 190, L = 34, B = 24, T = 14;
+      var max = Math.max(1, Math.max.apply(null, data.map(function (d) { return d[1]; })));
+      var step = Math.max(1, Math.ceil(max / 4)), top = step * Math.ceil(max / step);
+      var svg = svgEl("svg", { viewBox: "0 0 " + W + " " + H, role: "img",
+                               "aria-label": label + "：共 " + data.reduce(function (a, d) { return a + d[1]; }, 0) + " 次访问" });
+      for (var v = 0; v <= top; v += step) {
+        var y = T + (H - T - B) * (1 - v / top);
+        svg.appendChild(svgEl("line", { "class": v ? "grid-line" : "axis", x1: L, x2: W, y1: y, y2: y }));
+        svg.appendChild(svgEl("text", { x: L - 6, y: y + 4, "text-anchor": "end" }, String(v)));
+      }
+      var band = (W - L) / data.length, bw = Math.min(24, Math.max(2, band - 2));
+      var every = Math.ceil(data.length / Math.floor((W - L) / 46));
+      data.forEach(function (d, i) {
+        var x = L + band * i + (band - bw) / 2, h = (H - T - B) * d[1] / top, y = H - B - h;
+        var g = svgEl("g", { "class": "hit", tabindex: 0, "aria-label": d[0] + "：" + d[1] + " 次访问" });
+        g.appendChild(svgEl("rect", { "class": "hitbox", x: L + band * i, y: T, width: band, height: H - T - B, fill: "transparent" }));
+        if (d[1]) g.appendChild(svgEl("path", { "class": "bar", d: barPath(x, y, bw, h, 4) }));
+        svg.appendChild(g);
+        tooltip(box, g, d[0], d[1] + " 次访问", (x + bw / 2) / W * box.clientWidth, y / H * box.clientWidth * H / W);
+        if (i % every === 0) svg.appendChild(svgEl("text", { x: x + bw / 2, y: H - 6, "text-anchor": "middle" }, d[2]));
+      });
+      box.appendChild(svg);
+    }
+
+    function hbars(id, data, total) {
+      var box = document.getElementById(id);
+      box.textContent = "";
+      var W = Math.max(260, box.clientWidth), row = 30, L = 46, R = 74, H = data.length * row + 4;
+      var svg = svgEl("svg", { viewBox: "0 0 " + W + " " + H, role: "img", "aria-label": "读到各章的访问比例" });
+      data.forEach(function (d, i) {
+        var y = i * row + 6, share = total ? d[1] / total : 0, w = (W - L - R) * share;
+        var g = svgEl("g", { "class": "hit", tabindex: 0, "aria-label": d[0] + "：" + Math.round(share * 100) + "%，" + d[1] + " 次" });
+        g.appendChild(svgEl("rect", { "class": "hitbox", x: 0, y: y - 4, width: W, height: row, fill: "transparent" }));
+        g.appendChild(svgEl("text", { x: 0, y: y + 13 }, d[0]));
+        if (w > 0) g.appendChild(svgEl("path", { "class": "bar", d: hbarPath(L, y, w, 18, 4) }));
+        g.appendChild(svgEl("text", { "class": "val", x: L + w + 8, y: y + 13 }, Math.round(share * 100) + "% · " + d[1]));
+        svg.appendChild(g);
+      });
+      svg.insertBefore(svgEl("line", { "class": "axis", x1: L, x2: L, y1: 0, y2: H }), svg.firstChild);
+      box.appendChild(svg);
+    }
+
+    function render() {
+      document.querySelectorAll(".filters button").forEach(function (b) {
+        b.setAttribute("aria-pressed", b.getAttribute("data-range") === range ? "true" : "false");
+      });
+      var list = events.filter(function (e) { return inRange(e.t); });
+      var ss = sessions(list);
+      var count = function (f) { return ss.filter(f).length; };
+      var timed = ss.filter(function (s) { return s.time > 0; });
+      var avg = timed.length ? Math.round(timed.reduce(function (a, s) { return a + s.time; }, 0) / timed.length) : 0;
+
+      var tiles = document.getElementById("tiles");
+      tiles.textContent = "";
+      [["访问", ss.length, "次（按会话计）"], ["新访客", count(function (s) { return s.n; }), "第一次来"],
+       ["平均停留", timed.length ? dur(avg) : "—", timed.length + " 次有记录"],
+       ["打开简历", count(function (s) { return s.acts.resume; }), "次访问里打开过"],
+       ["采到彩蛋", count(function (s) { return s.eggs.length; }), "次访问里采到过"]].forEach(function (t) {
+        var d = el("div", "tile");
+        d.appendChild(el("dt", null, t[0]));
+        var dd = el("dd", null, String(t[1]));
+        d.appendChild(dd);
+        d.appendChild(el("small", null, t[2]));
+        tiles.appendChild(d);
+      });
+
+      // 每天（今天按小时）
+      var buckets = [], now = new Date();
+      if (range === "today") {
+        for (var h = 0; h < 24; h++) buckets.push([pad(h) + ":00", 0, pad(h)]);
+        ss.forEach(function (s) { buckets[s.start.getHours()][1]++; });
+      } else {
+        var first = range === "all" && events.length ? new Date(events[0].t) : new Date(now.getTime() - (parseInt(range, 10) - 1) * 864e5);
+        first.setHours(0, 0, 0, 0);
+        var index = {};
+        for (var d = new Date(first); d <= now; d.setDate(d.getDate() + 1)) {
+          var key = day(d);
+          index[key] = buckets.length;
+          buckets.push([key, 0, key.slice(5)]);
+        }
+        ss.forEach(function (s) { var i = index[day(s.start)]; if (i != null) buckets[i][1]++; });
+      }
+      columns("daily", buckets, range === "today" ? "今天每小时的访问" : "每天的访问");
+      put("daily-table", table(buckets.map(function (b) { return [b[0], b[1]]; }), ["日期", "访问"], [0, 1]));
+
+      var depth = CHAPTERS.map(function (c) { return [c[1], count(function (s) { return s.reads[c[0]]; })]; });
+      hbars("depth", depth, ss.length);
+      put("depth-table", table(depth.map(function (d) { return [d[0], d[1], ss.length ? Math.round(d[1] / ss.length * 100) + "%" : "—"]; }),
+                               ["章节", "访问", "占比"], [0, 1, 1]));
+
+      var src = {};
+      ss.forEach(function (s) {
+        var k = source(s);
+        src[k] = src[k] || [k, 0, 0, 0];
+        src[k][1]++; if (s.acts.resume) src[k][2]++; if (s.acts.mail || s.acts.wechat) src[k][3]++;
+      });
+      put("sources", table(Object.keys(src).map(function (k) { return src[k]; }).sort(function (a, b) { return b[1] - a[1]; }),
+                           ["来源", "访问", "打开简历", "邮件 / 微信"], [0, 1, 1, 1]));
+
+      var acts = ACTIONS.map(function (a) { return [a[1], count(function (s) { return s.acts[a[0]]; })]; });
+      var works = {};
+      ss.forEach(function (s) { s.go.forEach(function (id) { works[id] = (works[id] || 0) + 1; }); });
+      var box = document.getElementById("actions");
+      box.textContent = "";
+      box.appendChild(table(acts, ["动作", "访问"], [0, 1]));
+      var wrows = Object.keys(works).sort(function (a, b) { return works[b] - works[a]; })
+        .map(function (id) { return [(titles[id] ? id.replace("no-", "No.") + " " + titles[id] : id), works[id]]; });
+      if (wrows.length) { box.appendChild(el("h2", "sub", "点开的作品")); box.appendChild(table(wrows, ["作品", "次数"], [0, 1])); }
+
+      var eggs = {};
+      ss.forEach(function (s) { s.eggs.forEach(function (id) { eggs[id] = (eggs[id] || 0) + 1; }); });
+      put("eggs", table(Object.keys(EGGS).filter(function (id) { return eggs[id]; })
+                          .map(function (id) { return [EGGS[id], eggs[id]]; }).sort(function (a, b) { return b[1] - a[1]; }),
+                        ["彩蛋", "采到的访问"], [0, 1]));
+
+      var recent = ss.slice().sort(function (a, b) { return b.start - a.start; }).slice(0, 30).map(function (s) {
+        var deepest = "—";
+        CHAPTERS.forEach(function (c) { if (s.reads[c[0]]) deepest = c[1]; });
+        var did = ACTIONS.filter(function (a) { return s.acts[a[0]]; }).map(function (a) { return a[1]; });
+        if (s.eggs.length) did.push("彩蛋 " + s.eggs.length + " 枚");
+        return [clock(s.start), source(s), device(s.ua) + (s.w ? " · " + s.w + "px" : ""), deepest, did.join("、") || "—",
+                s.time ? dur(s.time) : "—"];
+      });
+      put("recent", table(recent, ["时间", "来源", "设备", "读到", "做了什么", "停留"], [0, 0, 0, 0, 0, 1]));
+
+      document.getElementById("note").textContent = "共 " + events.length + " 条记录" +
+        (skipped ? "，另有 " + skipped + " 条爬虫 / 自动化访问已排除" : "") +
+        "。停留时间在访客离开或切走页面时才记下。";
+    }
+
+    document.querySelector(".filters").addEventListener("click", function (e) {
+      var b = e.target.closest("button");
+      if (!b) return;
+      range = b.getAttribute("data-range");
+      history.replaceState(null, "", "?range=" + range);
+      render();
+    });
+    var resizeTimer = 0;
+    window.addEventListener("resize", function () { clearTimeout(resizeTimer); resizeTimer = setTimeout(render, 150); });
+
+    // 作品名从首页读，统计里显示「No.01 AI 病历智能体…」而不是只有编号
+    var home = fetch("../", { credentials: "same-origin" }).then(function (r) { return r.ok ? r.text() : ""; }).then(function (html) {
+      var d = new DOMParser().parseFromString(html, "text/html");
+      d.querySelectorAll("article[id^='no-'] h3").forEach(function (h) { titles[h.closest("article").id] = h.textContent.trim(); });
+    }).catch(function () {});
+    var log = fetch("hits.log", { credentials: "same-origin", cache: "no-store" }).then(function (r) {
+      if (!r.ok) throw new Error(r.status);
+      return r.text();
+    });
+    Promise.all([log, home]).then(function (res) { parse(res[0]); render(); }).catch(function (err) {
+      document.getElementById("note").textContent = "读不到日志（" + err.message + "）。";
+      render();
+    });
+  })();
+  </script>
+</body>
+</html>
